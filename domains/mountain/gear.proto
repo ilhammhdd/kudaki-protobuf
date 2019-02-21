@@ -1,0 +1,27 @@
+syntax = "proto3";
+package domain.mountain;
+
+/* 
+  uncomment the package path accordingly to corresponding service
+*/
+// option go_package = "github.com/ilhammhdd/kudaki-gateway-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-event-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-file-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-item-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-mountain-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-rent-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-review-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-shop-service/entities/domains/mountain";
+// option go_package = "github.com/ilhammhdd/kudaki-user-service/entities/domains/mountain";
+
+import "domains/file/file.proto";
+
+message Gear {
+  string uuid = 1;
+  string name = 2;
+  uint32 total = 3;
+  string unit = 4;
+  uint32 total_person = 5;
+  string description = 6;
+  domain.file.File photo = 7;
+}

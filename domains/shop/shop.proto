@@ -1,0 +1,32 @@
+syntax = "proto3";
+package domain.shop;
+
+/* 
+  uncomment the package path accordingly to corresponding service
+*/
+// option go_package = "github.com/ilhammhdd/kudaki-gateway-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-event-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-file-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-item-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-mountain-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-rent-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-review-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-shop-service/entities/domains/shop";
+// option go_package = "github.com/ilhammhdd/kudaki-user-service/entities/domains/shop";
+
+import "domains/shop/policy.proto";
+import "domains/shop/branch.proto";
+import "domains/shop/shop_item.proto";
+import "domains/file/file.proto";
+
+message Shop {
+  string uuid = 1;
+  string name = 2;
+  bool open = 3;
+  string location = 4;
+  domain.file.File logo = 5;
+  repeated domain.file.File store_photos = 6;
+  repeated domain.shop.Policy policies = 7;
+  repeated domain.shop.ShopItem shop_items = 8;
+  repeated domain.shop.Branch branches = 9;
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+package domain.review;
+
+/* 
+  uncomment the package path accordingly to corresponding service
+*/
+// option go_package = "github.com/ilhammhdd/kudaki-gateway-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-event-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-file-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-item-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-mountain-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-rent-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-review-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-shop-service/entities/domains/review";
+// option go_package = "github.com/ilhammhdd/kudaki-user-service/entities/domains/review";
+
+message Review {
+  string uuid = 1;
+  uint32 start = 2;
+  string comment = 3;
+}
