@@ -4,6 +4,8 @@ package event;
 import "domains/user/user.proto";
 import "domains/user/profile.proto";
 
+option go_package = "";
+
 message SignedUp {
   string uuid = 1;
   domain.user.Profile profile = 2;

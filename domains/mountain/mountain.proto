@@ -1,6 +1,8 @@
 syntax = "proto3";
 package domain.mountain;
 
+option go_package = "";
+
 message Mountain {
   string uuid = 1;
   string name = 2;

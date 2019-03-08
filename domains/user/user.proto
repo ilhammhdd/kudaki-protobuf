@@ -1,6 +1,8 @@
 syntax = "proto3";
 package domain.user;
 
+option go_package = "";
+
 enum Role {
   USER = 0;
   KUDAKI_TEAM = 1;

@@ -6,6 +6,8 @@ import "domains/mountain/recomended_gear.proto";
 import "domains/mountain/review.proto";
 import "domains/mountain/trip.proto";
 
+option go_package = "";
+
 message MountainInformationAdded {
   string uuid = 1;
   domain.mountain.Mountain mountain = 2;

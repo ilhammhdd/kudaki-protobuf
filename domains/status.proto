@@ -1,6 +1,8 @@
 syntax = "proto3";
 package domain;
 
+option go_package = "";
+
 enum Status {
   ON_PROGRESS = 0;
   SUCCESS = 1;

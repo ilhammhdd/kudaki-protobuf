@@ -4,6 +4,8 @@ package domain.mountain;
 import "domains/user/user.proto";
 import "domains/mountain/mountain.proto";
 
+option go_package = "";
+
 message RecomendedGear {
   string uuid = 1;
   domain.user.User user = 2;

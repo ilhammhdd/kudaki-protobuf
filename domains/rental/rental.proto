@@ -6,6 +6,8 @@ import "domains/rental/item.proto";
 import "google/protobuf/timestamp.proto";
 import "domains/status.proto";
 
+option go_package = "";
+
 message Rental {
   string uuid = 1;
   domain.user.User owner = 2;

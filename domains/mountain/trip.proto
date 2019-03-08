@@ -3,7 +3,8 @@ package domain.mountain;
 
 import "google/protobuf/timestamp.proto";
 import "domains/mountain/recomended_gear.proto";
-import "domains/mountain/mountain.proto";
+
+option go_package = "";
 
 message Trip {
   string uuid = 1;

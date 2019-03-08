@@ -1,6 +1,8 @@
 syntax = "proto3";
 package kafka;
 
+option go_package = "";
+
 enum Topics {
   USER = 0;
   MOUNTAIN = 1;

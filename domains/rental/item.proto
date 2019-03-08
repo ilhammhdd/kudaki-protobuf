@@ -3,6 +3,8 @@ package domain.rental;
 
 import "domains/user/user.proto";
 
+option go_package = "";
+
 message Item {
   string uuid = 1;
   string name = 2;
@@ -10,5 +12,5 @@ message Item {
   string unit = 4;
   uint32 price = 5;
   string description = 6;
-  domain.user.User user = 7;
+  domain.user.User owner = 7;
 }

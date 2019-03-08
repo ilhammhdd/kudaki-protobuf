@@ -3,6 +3,8 @@ package domain.kudaki_event;
 
 import "domains/user/user.proto";
 
+option go_package = "";
+
 message Organizer {
   string uuid = 1;
   domain.user.User user = 2;

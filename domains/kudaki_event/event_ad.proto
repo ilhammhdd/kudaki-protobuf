@@ -6,6 +6,8 @@ import "domains/mountain/mountain.proto";
 import "domains/kudaki_event/organizer.proto";
 import "domains/status.proto";
 
+option go_package = "";
+
 message EventAd {
   string uuid = 1;
   string name = 2;

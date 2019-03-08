@@ -1,6 +1,8 @@
 syntax = "proto3";
 package rest;
 
+option go_package = "";
+
 message Response {
   bool success = 1;
   repeated string errors = 2;

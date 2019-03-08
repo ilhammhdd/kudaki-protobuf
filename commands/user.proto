@@ -4,6 +4,8 @@ package command;
 import "domains/user/user.proto";
 import "domains/user/profile.proto";
 
+option go_package = "";
+
 message SignUp {
   string uuid = 1;
   domain.user.Profile profile = 2;
@@ -34,10 +36,6 @@ message ChangePassword {
   domain.user.User new_user = 3;
 }
 
-message RetrieveUsers {
-  string uuid = 1;
-}
+message RetrieveUsers { string uuid = 1; }
 
-message RetrieveProfiles {
-  string uuid = 1;
-}
+message RetrieveProfiles { string uuid = 1; }

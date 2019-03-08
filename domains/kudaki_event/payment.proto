@@ -4,6 +4,8 @@ package domain.kudaki_event;
 import "domains/kudaki_event/event_ad.proto";
 import "google/protobuf/timestamp.proto";
 
+option go_package = "";
+
 message Payment {
   string uuid = 1;
   domain.kudaki_event.EventAd event_ad = 2;

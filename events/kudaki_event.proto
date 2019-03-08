@@ -5,6 +5,8 @@ import "domains/kudaki_event/event_ad.proto";
 import "domains/kudaki_event/payment.proto";
 import "domains/user/user.proto";
 
+option go_package = "";
+
 message EventAdProposed {
   string uuid = 1;
   domain.kudaki_event.EventAd event_ads = 2;

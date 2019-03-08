@@ -3,32 +3,29 @@ package command;
 
 import "domains/user/user.proto";
 import "domains/rental/item.proto";
-import "domains/rental/storefront.proto";
 import "domains/rental/cart.proto";
 import "domains/rental/rental.proto";
+
+option go_package = "";
 
 message AddItemToStorefront {
   string uuid = 1;
   domain.rental.Item item = 2;
-  domain.rental.Storefront storefront = 3;
 }
 
 message EditStorefrontItem {
   string uuid = 1;
   domain.rental.Item old_item = 2;
   domain.rental.Item new_item = 3;
-  domain.rental.Storefront storefront = 4;
 }
 
 message RetrieveStorefrontItems {
   string uuid = 1;
-  domain.rental.Storefront storefront = 2;
   repeated domain.rental.Item items = 3;
 }
 
 message DeleteStorefrontItem {
   string uuid = 1;
-  domain.rental.Storefront storefront = 2;
   domain.rental.Item item = 3;
 }
 
@@ -79,6 +76,4 @@ message ContactOwnersForAcceptance {
   domain.rental.Cart cart = 3;
 }
 
-message RetrieveRentHistories {
-  string uuid = 1;
-}
+message RetrieveRentHistories { string uuid = 1; }

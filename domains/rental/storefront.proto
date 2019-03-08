@@ -1,9 +1,0 @@
-syntax = "proto3";
-package domain.rental;
-
-import "domains/user/user.proto";
-
-message Storefront { 
-  string uuid = 1; 
-  domain.user.User user = 2;
-}

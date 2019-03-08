@@ -1,0 +1,28 @@
+syntax = "proto3";
+package service;
+
+import "commands/kudaki_event.proto";
+import "events/kudaki_event.proto";
+
+option go_package = "";
+
+service Registration {
+  rpc RegisterToEvent(command.RegisterToEvent)
+      returns (event.RegisteredToEvent);
+}
+
+service Verification {
+  rpc VerifyOrganizerAndEvent(command.VerifyOrganizerAndEvent)
+      returns (event.OrganizerAndEventVerified);
+}
+
+service Payment {
+  rpc MakePayment(command.MakePayment) returns (event.PaymentDone);
+}
+
+service EventAd {
+  rpc ProposeEventAd(command.ProposeEventAd) returns (event.EventAdProposed);
+  rpc RetrieveEventAds(command.RetrieveEventAds)
+      returns (event.EventAdsRetrieved);
+  rpc PublishEventAd(command.PublishEventAd) returns (event.EventAdPublished);
+}

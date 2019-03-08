@@ -5,6 +5,8 @@ import "domains/user/user.proto";
 import "domains/rental/item.proto";
 import "domains/status.proto";
 
+option go_package = "";
+
 message Cart {
   string uuid = 1;
   domain.user.User user = 2;
