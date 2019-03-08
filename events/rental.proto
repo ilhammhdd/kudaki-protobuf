@@ -1,0 +1,85 @@
+syntax = "proto3";
+package event;
+
+import "domains/user/user.proto";
+import "domains/rental/item.proto";
+import "domains/rental/storefront.proto";
+import "domains/rental/cart.proto";
+import "domains/rental/rental.proto";
+
+message ItemAddedToStorefront {
+  string uuid = 1;
+  domain.rental.Item item = 2;
+  domain.rental.Storefront storefront = 3;
+}
+
+message StorefrontItemEdited {
+  string uuid = 1;
+  domain.rental.Item old_item = 2;
+  domain.rental.Item new_item = 3;
+  domain.rental.Storefront storefront = 4;
+}
+
+message StorefrontItemsRetrieved {
+  string uuid = 1;
+  domain.rental.Storefront storefront = 2;
+  repeated domain.rental.Item items = 3;
+}
+
+message StorefrontItemDeleted {
+  string uuid = 1;
+  domain.rental.Storefront storefront = 2;
+  domain.rental.Item item = 3;
+}
+
+message RentalGoodsHistoriesRetrieved {
+  string uuid = 1;
+  repeated domain.rental.Rental rentals = 2;
+}
+
+message GoodsRentalAccepted {
+  string uuid = 1;
+  domain.rental.Rental rental = 2;
+}
+
+message GoodsRentalDeclined {
+  string uuid = 1;
+  domain.rental.Rental rental = 2;
+}
+
+message ItemAddedToCart {
+  string uuid = 1;
+  domain.rental.Cart cart = 2;
+  domain.rental.Item item = 3;
+}
+
+message CartItemEdited {
+  string uuid = 1;
+  domain.rental.Cart cart = 2;
+}
+
+message CartItemDeleted {
+  string uuid = 1;
+  domain.rental.Cart cart = 2;
+}
+
+message CartItemsRetrieved {
+  string uuid = 1;
+  repeated domain.rental.Cart carts = 2;
+}
+
+message CartItemsBooked {
+  string uuid = 1;
+  domain.rental.Cart cart = 2;
+}
+
+message OwnersContactedForAcceptance {
+  string uuid = 1;
+  repeated domain.user.User users = 2;
+  domain.rental.Cart cart = 3;
+}
+
+message RentsHistoriesRetrieved {
+  string uuid = 1;
+  repeated domain.rental.Rental rents = 2;
+}

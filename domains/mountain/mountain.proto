@@ -1,27 +1,11 @@
 syntax = "proto3";
 package domain.mountain;
 
-/* 
-  uncomment the package path accordingly to corresponding service
-*/
-// option go_package = "github.com/ilhammhdd/kudaki-gateway-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-event-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-file-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-item-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-mountain-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-rent-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-review-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-shop-service/entities/domains/mountain";
-// option go_package = "github.com/ilhammhdd/kudaki-user-service/entities/domains/mountain";
-
 message Mountain {
   string uuid = 1;
   string name = 2;
-  uint32 masl = 3;
-  double lat = 4;
-  double long = 5;
+  uint32 height = 3;
+  float latitude = 4;
+  float longitude = 5;
   string description = 6;
-  int32 difficulty = 7;
-  repeated string tracks = 8;
-  repeated string paths = 9;
 }

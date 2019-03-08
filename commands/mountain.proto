@@ -1,0 +1,93 @@
+syntax = "proto3";
+package command;
+
+import "domains/mountain/mountain.proto";
+import "domains/mountain/recomended_gear.proto";
+import "domains/mountain/review.proto";
+import "domains/mountain/trip.proto";
+
+message AddMountainInformation {
+  string uuid = 1;
+  domain.mountain.Mountain mountain = 2;
+}
+
+message EditMountainInformation {
+  string uuid = 1;
+  domain.mountain.Mountain mountain = 2;
+}
+
+message RetrieveMountainInformations {
+  string uuid = 1;
+  repeated domain.mountain.Mountain mountains = 2;
+}
+
+message SearchMountainInformations {
+  string uuid = 1;
+  string key = 2;
+  repeated domain.mountain.Mountain results = 3;
+}
+
+message ReviewMountain {
+  string uuid = 1;
+  domain.mountain.Review review = 2;
+}
+
+message EditMountainReview {
+  string uuid = 1;
+  domain.mountain.Review review = 2;
+}
+
+message DeleteMountainReview {
+  string uuid = 1;
+  domain.mountain.Review review = 2;
+}
+
+message RetrieveMountainReviews {
+  string uuid = 1;
+  repeated domain.mountain.Review review = 2;
+}
+
+message RetrieveRecomendedGears {
+  string uuid = 1;
+  repeated domain.mountain.RecomendedGear recomended_gears = 2;
+}
+
+message AddRecomendedGear {
+  string uuid = 1;
+  domain.mountain.RecomendedGear recomended_gear = 2;
+}
+
+message EditRecomendedGear {
+  string uuid = 1;
+  domain.mountain.RecomendedGear recomended_gear = 2;
+}
+
+message DeleteRecomendedGear {
+  string uuid = 1;
+  domain.mountain.RecomendedGear recomended_gear = 2;
+}
+
+message UpVoteRecomendedGear {
+  string uuid = 1;
+  domain.mountain.RecomendedGear recomended_gear = 2;
+}
+
+message DownVoteRecomendedGear {
+  string uuid = 1;
+  domain.mountain.RecomendedGear recomended_gear = 2;
+}
+
+message PlanTrip {
+  string uuid = 1;
+  domain.mountain.Trip trip = 2;
+}
+
+message CancelTrip {
+  string uuid = 1;
+  domain.mountain.Trip trip = 2;
+}
+
+message RetrieveTrips {
+  string uuid = 1;
+  repeated domain.mountain.Trip trip = 2;
+}

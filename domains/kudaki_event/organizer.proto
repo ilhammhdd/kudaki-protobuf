@@ -1,0 +1,12 @@
+syntax = "proto3";
+package domain.kudaki_event;
+
+import "domains/user/user.proto";
+
+message Organizer {
+  string uuid = 1;
+  domain.user.User user = 2;
+  string name = 3;
+  string phone = 4;
+  string photo_path = 5;
+}

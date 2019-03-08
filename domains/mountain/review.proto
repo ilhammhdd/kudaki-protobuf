@@ -1,0 +1,13 @@
+syntax = "proto3";
+package domain.mountain;
+
+import "domains/user/user.proto";
+import "domains/mountain/mountain.proto";
+
+message Review {
+  string uuid = 1;
+  domain.user.User user = 2;
+  uint32 difficulty = 3;
+  string review = 4;
+  domain.mountain.Mountain mountain = 5;
+}

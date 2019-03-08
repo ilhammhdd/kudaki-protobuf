@@ -1,44 +1,16 @@
 syntax = "proto3";
 package domain.user;
 
-option java_package = "entities.domain.user";
-
-/* 
-  uncomment the package path accordingly to corresponding service
-*/
-// option go_package = "github.com/ilhammhdd/kudaki-gateway-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-event-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-file-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-item-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-mountain-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-rent-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-review-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-shop-service/entities/domains/user";
-// option go_package = "github.com/ilhammhdd/kudaki-user-service/entities/domains/user";
-
-import "domains/user/profile.proto";
-
-enum AccountType {
-  GOOGLE = 0;
-  FACEBOOK = 1;
-  TWITTER = 2;
-  NATIVE = 3;
-}
-
 enum Role {
-  KUDAKI_TEAM = 0;
-  SHOP_OWNER = 1;
-  SHOP_KEEPER = 2;
-  HIKER = 3;
+  USER = 0;
+  KUDAKI_TEAM = 1;
+  ORGANIZER = 2;
 }
 
 message User {
   string uuid = 1;
-  string username = 2;
-  string email = 3;
-  string password = 4;
-  string token = 5;
-  AccountType account_type = 6;
-  domain.user.Profile profile = 7;
-  Role role = 8;
+  string email = 2;
+  string password = 3;
+  string token = 4;
+  Role role = 5;
 }

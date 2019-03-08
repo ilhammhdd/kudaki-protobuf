@@ -1,0 +1,12 @@
+syntax = "proto3";
+package domain.kudaki_event;
+
+import "domains/kudaki_event/event_ad.proto";
+import "google/protobuf/timestamp.proto";
+
+message Payment {
+  string uuid = 1;
+  domain.kudaki_event.EventAd event_ad = 2;
+  google.protobuf.Timestamp due = 3;
+  uint32 total = 4;
+}

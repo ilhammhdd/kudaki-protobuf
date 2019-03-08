@@ -1,0 +1,18 @@
+syntax = "proto3";
+package domain.kudaki_event;
+
+import "google/protobuf/timestamp.proto";
+import "domains/mountain/mountain.proto";
+import "domains/kudaki_event/organizer.proto";
+import "domains/status.proto";
+
+message EventAd {
+  string uuid = 1;
+  string name = 2;
+  google.protobuf.Timestamp start = 3;
+  google.protobuf.Timestamp end = 4;
+  domain.mountain.Mountain mountain = 5;
+  domain.kudaki_event.Organizer organizer = 6;
+  string description = 7;
+  domain.Status status = 8;
+}

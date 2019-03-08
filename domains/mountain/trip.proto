@@ -1,0 +1,13 @@
+syntax = "proto3";
+package domain.mountain;
+
+import "google/protobuf/timestamp.proto";
+import "domains/mountain/recomended_gear.proto";
+import "domains/mountain/mountain.proto";
+
+message Trip {
+  string uuid = 1;
+  uint32 person = 2;
+  google.protobuf.Timestamp departure = 3;
+  domain.mountain.RecomendedGear recomended_gears = 4;
+}

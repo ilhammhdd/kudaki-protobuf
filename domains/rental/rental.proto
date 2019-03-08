@@ -1,0 +1,16 @@
+syntax = "proto3";
+package domain.rental;
+
+import "domains/user/user.proto";
+import "domains/rental/item.proto";
+import "google/protobuf/timestamp.proto";
+import "domains/status.proto";
+
+message Rental {
+  string uuid = 1;
+  domain.user.User owner = 2;
+  domain.user.User tenant = 3;
+  repeated domain.rental.Item items = 4;
+  google.protobuf.Timestamp timestamp = 5;
+  domain.Status status = 6;
+}

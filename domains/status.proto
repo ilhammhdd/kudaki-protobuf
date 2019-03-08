@@ -1,0 +1,13 @@
+syntax = "proto3";
+package domain;
+
+enum Status {
+  ON_PROGRESS = 0;
+  SUCCESS = 1;
+  FAILED = 2;
+  CANCELED = 3;
+  PENDING = 4;
+  INSTALLED = 5;
+  PAID_OFF = 6;
+  NOT_PAID_YET = 7;
+}
