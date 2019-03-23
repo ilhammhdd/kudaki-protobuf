@@ -1,6 +1,8 @@
 syntax = "proto3";
 package kafka;
 
+// testing submodule update
+
 option go_package = "";
 
 enum Topics {
