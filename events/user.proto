@@ -27,6 +27,12 @@ message SignedOut {
   domain.user.User user = 3;
 }
 
+message AccountVerifyEmailSent {
+  string uuid = 1;
+  domain.user.Profile profile = 2;
+  domain.user.User user = 3;
+}
+
 message AccountDeleted {
   string uuid = 1;
   domain.EventStatus event_status = 2;
