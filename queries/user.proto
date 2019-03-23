@@ -1,0 +1,17 @@
+syntax = "proto3";
+package query;
+
+import "domains/filter.proto";
+
+option go_package = "";
+
+message RetrieveUsers {
+  string uuid = 1;
+  domain.Filter filter = 2;
+}
+
+message RetrieveProfile {
+  string uuid = 1;
+  string profile_uuid = 2;
+  string user_uuid = 3;
+}

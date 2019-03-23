@@ -9,10 +9,17 @@ enum Role {
   ORGANIZER = 2;
 }
 
+enum AccountType {
+  NATIVE = 0;
+  GOOGLE = 1;
+  FACEBOOK = 2;
+}
+
 message User {
   string uuid = 1;
   string email = 2;
   string password = 3;
   string token = 4;
   Role role = 5;
+  string phone_number = 6;
 }

@@ -3,47 +3,72 @@ package event;
 
 import "domains/user/user.proto";
 import "domains/user/profile.proto";
+import "domains/user/payment.proto";
+import "domains/status.proto";
 
 option go_package = "";
 
 message SignedUp {
   string uuid = 1;
-  domain.user.Profile profile = 2;
+  domain.EventStatus event_status = 2;
+  domain.user.Profile profile = 3;
+  domain.user.User user = 4;
 }
 
 message SignedIn {
   string uuid = 1;
-  domain.user.User user = 2;
+  domain.EventStatus event_status = 2;
+  domain.user.User user = 3;
 }
 
 message SignedOut {
   string uuid = 1;
-  domain.user.User user = 2;
+  domain.EventStatus event_status = 2;
+  domain.user.User user = 3;
 }
 
 message AccountDeleted {
   string uuid = 1;
-  domain.user.User user = 2;
+  domain.EventStatus event_status = 2;
+  domain.user.User user = 3;
 }
 
 message ProfileUpdated {
   string uuid = 1;
-  domain.user.Profile old_profile = 2;
-  domain.user.Profile new_profile = 3;
+  domain.EventStatus event_status = 2;
+  domain.user.Profile old_profile = 3;
+  domain.user.Profile new_profile = 4;
 }
 
 message PasswordChanged {
   string uuid = 1;
-  domain.user.User old_user = 2;
-  domain.user.User new_user = 3;
+  domain.EventStatus event_status = 2;
+  domain.user.User old_user = 3;
+  domain.user.User new_user = 4;
+}
+
+message UsersSearched {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  string key = 3;
+  repeated domain.user.User users = 4;
 }
 
 message UsersRetrieved {
   string uuid = 1;
-  repeated domain.user.User users = 2;
+  domain.EventStatus event_status = 2;
+  repeated domain.user.User users = 3;
 }
 
-message ProfilesRetrieved {
+message ProfileRetrieved {
   string uuid = 1;
-  repeated domain.user.Profile profiles = 2;
+  domain.EventStatus event_status = 2;
+  string user_uuid = 3;
+  repeated domain.user.Profile profiles = 4;
+}
+
+message PaymentDone {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  domain.user.Payment payment = 3;
 }

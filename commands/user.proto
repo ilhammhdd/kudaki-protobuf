@@ -3,12 +3,14 @@ package command;
 
 import "domains/user/user.proto";
 import "domains/user/profile.proto";
+import "domains/user/payment.proto";
 
 option go_package = "";
 
 message SignUp {
   string uuid = 1;
   domain.user.Profile profile = 2;
+  domain.user.User user = 3;
 }
 
 message SignIn {
@@ -36,6 +38,12 @@ message ChangePassword {
   domain.user.User new_user = 3;
 }
 
-message RetrieveUsers { string uuid = 1; }
+message SearchUsers {
+  string uuid = 1;
+  string key = 2;
+}
 
-message RetrieveProfiles { string uuid = 1; }
+message MakePayment {
+  string uuid = 1;
+  domain.user.Payment payment = 2;
+}

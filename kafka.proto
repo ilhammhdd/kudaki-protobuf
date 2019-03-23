@@ -9,3 +9,9 @@ enum Topics {
   KUDAKI_EVENT = 2;
   RENTAL = 3;
 }
+
+enum Partition {
+  EVENT = 0;
+  COMMAND = 1;
+  QUERY = 2;
+}

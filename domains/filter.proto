@@ -1,0 +1,23 @@
+syntax = "proto3";
+package domain;
+
+import "domains/status.proto";
+
+option go_package = "";
+
+message Range {
+  uint32 min = 1;
+  uint32 max = 2;
+  string unit = 3;
+}
+
+message Category {
+  string name = 1;
+  repeated Category sub_categories = 2;
+}
+
+message Filter {
+  Range range = 1;
+  repeated Category categories = 2;
+  repeated domain.Status status = 3;
+}

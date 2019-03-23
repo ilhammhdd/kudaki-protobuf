@@ -1,0 +1,19 @@
+syntax = "proto3";
+package service;
+
+import "commands/rental.proto";
+import "queries/rental.proto";
+import "events/rental.proto";
+
+option go_package = "";
+ 
+service StoreFront {
+  rpc AddItemToStorefront(command.AddItemToStorefront)
+      returns (event.ItemAddedToStorefront);
+  rpc EditStorefrontItem(command.EditStorefrontItem)
+      returns (event.StorefrontItemEdited);
+  rpc RetrieveStorefrontItems(query.RetrieveStorefrontItems)
+      returns (event.StorefrontItemsRetrieved);
+  rpc DeleteStorefrontItem(command.DeleteStorefrontItem)
+      returns (event.StorefrontItemDeleted);
+}

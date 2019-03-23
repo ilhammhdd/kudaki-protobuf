@@ -1,6 +1,8 @@
 syntax = "proto3";
 package domain;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "";
 
 enum Status {
@@ -12,4 +14,14 @@ enum Status {
   INSTALLED = 5;
   PAID_OFF = 6;
   NOT_PAID_YET = 7;
+  AVAILABLE = 8;
+  UNAVAILABLE = 9;
+  OUT_OF_STOCK = 10;
+}
+
+message EventStatus {
+  int32 code = 1;
+  repeated string messages = 2;
+  bytes data = 3;
+  google.protobuf.Timestamp timestamp = 4;
 }

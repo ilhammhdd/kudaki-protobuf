@@ -2,24 +2,13 @@ syntax = "proto3";
 package service;
 
 import "commands/user.proto";
+import "queries/user.proto";
 import "events/user.proto";
 
 option go_package = "";
 
-service Authentication {
-  rpc SignUp(command.SignUp) returns (event.SignedUp);
-  rpc SignIn(command.SignIn) returns (event.SignedIn);
-  rpc SignOut(command.SignOut) returns (event.SignedOut);
-}
-
 service User {
   rpc DeleteAccount(command.DeleteAccount) returns (event.AccountDeleted);
   rpc ChangePassword(command.ChangePassword) returns (event.PasswordChanged);
-  rpc RetrieveUsers(command.RetrieveUsers) returns (event.UsersRetrieved);
-}
-
-service Profile {
-  rpc UpdateProfile(command.UpdateProfile) returns (event.ProfileUpdated);
-  rpc RetrieveProfiles(command.RetrieveProfiles)
-      returns (event.ProfilesRetrieved);
+  rpc RetrieveUsers(query.RetrieveUsers) returns (event.UsersRetrieved);
 }

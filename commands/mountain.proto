@@ -8,25 +8,14 @@ import "domains/mountain/trip.proto";
 
 option go_package = "";
 
-message AddMountainInformation {
+message AddMountain {
   string uuid = 1;
   domain.mountain.Mountain mountain = 2;
 }
 
-message EditMountainInformation {
+message EditMountain {
   string uuid = 1;
   domain.mountain.Mountain mountain = 2;
-}
-
-message RetrieveMountainInformations {
-  string uuid = 1;
-  repeated domain.mountain.Mountain mountains = 2;
-}
-
-message SearchMountainInformations {
-  string uuid = 1;
-  string key = 2;
-  repeated domain.mountain.Mountain results = 3;
 }
 
 message ReviewMountain {
@@ -42,16 +31,6 @@ message EditMountainReview {
 message DeleteMountainReview {
   string uuid = 1;
   domain.mountain.Review review = 2;
-}
-
-message RetrieveMountainReviews {
-  string uuid = 1;
-  repeated domain.mountain.Review review = 2;
-}
-
-message RetrieveRecomendedGears {
-  string uuid = 1;
-  repeated domain.mountain.RecomendedGear recomended_gears = 2;
 }
 
 message AddRecomendedGear {
@@ -87,9 +66,4 @@ message PlanTrip {
 message CancelTrip {
   string uuid = 1;
   domain.mountain.Trip trip = 2;
-}
-
-message RetrieveTrips {
-  string uuid = 1;
-  repeated domain.mountain.Trip trip = 2;
 }

@@ -2,39 +2,77 @@ syntax = "proto3";
 package event;
 
 import "domains/kudaki_event/event_ad.proto";
-import "domains/kudaki_event/payment.proto";
+import "domains/kudaki_event/organizer.proto";
 import "domains/user/user.proto";
+import "domains/filter.proto";
+import "domains/status.proto";
 
 option go_package = "";
 
 message EventAdProposed {
   string uuid = 1;
-  domain.kudaki_event.EventAd event_ads = 2;
-}
-
-message PaymentDone {
-  string uuid = 1;
-  domain.kudaki_event.Payment payment = 2;
+  domain.EventStatus event_status = 2;
+  domain.kudaki_event.EventAd kudaki_event_ads = 3;
 }
 
 message OrganizerAndEventVerified {
   string uuid = 1;
-  domain.kudaki_event.EventAd event_ads = 2;
+  domain.EventStatus event_status = 2;
+  domain.kudaki_event.EventAd kudaki_event_ads = 3;
+}
+
+message OrganizersRetrieved {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  domain.Filter filter = 3;
+  repeated domain.kudaki_event.Organizer organizers = 4;
+}
+
+message OrganizerRetrieved {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  domain.kudaki_event.Organizer organizer = 3;
+}
+
+message OrganizerSearched {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  string key = 3;
+  repeated domain.kudaki_event.Organizer organizers = 4;
 }
 
 message EventAdPublished {
   string uuid = 1;
-  domain.kudaki_event.EventAd event_ads = 2;
+  domain.EventStatus event_status = 2;
+  domain.kudaki_event.EventAd kudaki_event_ads = 3;
 }
 
 message RegisteredToEvent {
   string uuid = 1;
-  domain.kudaki_event.EventAd event_ads = 2;
-  domain.user.User user = 3;
+  domain.EventStatus event_status = 2;
+  domain.kudaki_event.EventAd kudaki_event_ads = 3;
+  domain.user.User user = 4;
 }
 
 message EventAdsRetrieved {
   string uuid = 1;
-  repeated domain.kudaki_event.EventAd event_ads = 2;
-  domain.user.User user = 3;
+  domain.EventStatus event_status = 2;
+  domain.Filter filter = 3;
+  repeated domain.kudaki_event.EventAd event_ads = 4;
+  domain.user.User user = 5;
+}
+
+message EventAdRetrieved {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  domain.kudaki_event.EventAd event_ad = 3;
+  domain.user.User user = 4;
+}
+
+message EventAdSearched {
+  string uuid = 1;
+  domain.EventStatus event_status = 2;
+  string key = 3;
+  repeated domain.kudaki_event.EventAd event_ads = 4;
+  domain.user.User user = 5;
 }

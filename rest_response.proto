@@ -3,8 +3,10 @@ package rest;
 
 option go_package = "";
 
+message Error { repeated string details = 1; }
+
 message Response {
   bool success = 1;
-  repeated string errors = 2;
+  map<string, Error> errors = 2;
   bytes data = 3;
 }

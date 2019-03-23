@@ -3,47 +3,16 @@ package service;
 
 import "commands/mountain.proto";
 import "events/mountain.proto";
+import "queries/mountain.proto";
 
 option go_package = "";
 
-service MountainInformation {
-  rpc AddMountainInformation(command.AddMountainInformation)
-      returns (event.MountainInformationAdded);
-  rpc EditMountainInformation(command.EditMountainInformation)
-      returns (event.MountainInformationEdited);
-  rpc RetrieveMountainInformations(command.RetrieveMountainInformations)
-      returns (event.MountainInformationsRetrieved);
-  rpc SearchMountainInformations(command.SearchMountainInformations)
-      returns (event.MountainInformationsSearched);
-}
-
-service Review {
-  rpc ReviewMountain(command.ReviewMountain) returns (event.MountainReviewed);
-  rpc EditMountainReview(command.EditMountainReview)
-      returns (event.MountainReviewEdited);
-  rpc DeleteMountainReview(command.DeleteMountainReview)
-      returns (event.MountainReviewDeleted);
-  rpc RetrieveMountainReviews(command.RetrieveMountainReviews)
-      returns (event.MountainReviewsRetrieved);
-}
-
-service RecomendedGear {
-  rpc RetrieveRecomendedGears(command.RetrieveRecomendedGears)
-      returns (event.RecomendedGearsRetrieved);
-  rpc AddRecomendedGear(command.AddRecomendedGear)
-      returns (event.RecomendedGearAdded);
-  rpc EditRecomendedGear(command.EditRecomendedGear)
-      returns (event.RecomendedGearEdited);
-  rpc DeleteRecomendedGear(command.DeleteRecomendedGear)
-      returns (event.RecomendedGearDeleted);
-  rpc UpVoteRecomendedGear(command.UpVoteRecomendedGear)
-      returns (event.RecomendedGearUpVoted);
-  rpc DownVoteRecomendedGear(command.DownVoteRecomendedGear)
-      returns (event.RecomendedGearDownVoted);
-}
-
-service Trip {
-  rpc PlanTrip(command.PlanTrip) returns (event.TripPlanned);
-  rpc CancelTrip(command.CancelTrip) returns (event.TripCancelled);
-  rpc RetrieveTrips(command.RetrieveTrips) returns (event.TripsRetrieved);
+service Mountain {
+  rpc AddMountain(command.AddMountain) returns (event.MountainAdded);
+  rpc EditMountain(command.EditMountain) returns (event.MountainEdited);
+  rpc RetrieveMountains(query.RetrieveMountains)
+      returns (event.MountainsRetrieved);
+  rpc RetrieveMountain(query.RetrieveMountain)
+      returns (event.MountainRetrieved);
+  rpc SearchMountains(query.SearchMountain) returns (event.MountainsSearched);
 }

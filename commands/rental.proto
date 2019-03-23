@@ -19,27 +19,17 @@ message EditStorefrontItem {
   domain.rental.Item new_item = 3;
 }
 
-message RetrieveStorefrontItems {
-  string uuid = 1;
-  repeated domain.rental.Item items = 3;
-}
-
 message DeleteStorefrontItem {
   string uuid = 1;
   domain.rental.Item item = 3;
 }
 
-message RetrieveRentalGoodsHistories {
-  string uuid = 1;
-  repeated domain.rental.Rental rentals = 2;
-}
-
-message AcceptGoodsRental {
+message AcceptRental {
   string uuid = 1;
   domain.rental.Rental rental = 2;
 }
 
-message DeclineGoodsRental {
+message DeclineRental {
   string uuid = 1;
   domain.rental.Rental rental = 2;
 }
@@ -60,11 +50,6 @@ message DeleteCartItem {
   domain.rental.Cart cart = 2;
 }
 
-message RetrieveCartItems {
-  string uuid = 1;
-  repeated domain.rental.Cart carts = 2;
-}
-
 message BookCartItems {
   string uuid = 1;
   domain.rental.Cart cart = 2;
@@ -75,5 +60,3 @@ message ContactOwnersForAcceptance {
   repeated domain.user.User users = 2;
   domain.rental.Cart cart = 3;
 }
-
-message RetrieveRentHistories { string uuid = 1; }

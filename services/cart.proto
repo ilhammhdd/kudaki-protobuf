@@ -1,0 +1,17 @@
+syntax = "proto3";
+package service;
+
+import "commands/rental.proto";
+import "events/rental.proto";
+import "queries/rental.proto";
+
+option go_package = "";
+
+service Cart {
+  rpc AddItemToCart(command.AddItemToCart) returns (event.ItemAddedToCart);
+  rpc EditCartItem(command.EditCartItem) returns (event.CartItemEdited);
+  rpc DeleteCartItem(command.DeleteCartItem) returns (event.CartItemDeleted);
+  rpc RetrieveCartItems(query.RetrieveCartItems)
+      returns (event.CartItemsRetrieved); 
+  rpc BookCartItems(command.BookCartItems) returns (event.CartItemsBooked);
+}
