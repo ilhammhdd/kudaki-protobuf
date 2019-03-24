@@ -1,9 +1,9 @@
 syntax = "proto3";
-package domain;
+package entities;
 
-import "domains/status.proto";
+import "status.proto";
 
-option go_package = "";
+option go_package = "github.com/ilhammhdd/kudaki-entities";
 
 message Range {
   uint32 min = 1;
@@ -19,5 +19,5 @@ message Category {
 message Filter {
   Range range = 1;
   repeated Category categories = 2;
-  repeated domain.Status status = 3;
+  Status status = 3;
 }

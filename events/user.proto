@@ -1,0 +1,20 @@
+syntax = "proto3";
+package event;
+
+import "events/status.proto";
+import "user/user.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+
+message Signedup {
+  string uuid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
+}
+
+message UserVerificationEmailSent {
+  string uuid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
+  string verify_user_jwt = 4;
+}

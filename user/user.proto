@@ -1,0 +1,26 @@
+syntax = "proto3";
+package entities.user;
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/user";
+
+enum Role {
+  USER = 0;
+  KUDAKI_TEAM = 1;
+  ORGANIZER = 2;
+}
+
+enum AccountType {
+  NATIVE = 0;
+  GOOGLE = 1;
+  FACEBOOK = 2;
+}
+
+message User {
+  string uuid = 1;
+  string email = 2;
+  string password = 3;
+  string token = 4;
+  Role role = 5;
+  string phone_number = 6;
+  AccountType account_type = 7;
+}

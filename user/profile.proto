@@ -1,0 +1,14 @@
+syntax = "proto3";
+package entities.user;
+
+import "user/user.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/user";
+
+message Profile {
+  string uuid = 1;
+  string full_name = 2;
+  string photo = 3;
+  int32 reputation = 4;
+  entities.user.User user = 5;
+}

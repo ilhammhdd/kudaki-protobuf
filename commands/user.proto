@@ -1,0 +1,16 @@
+syntax = "proto3";
+package command;
+
+import "user/profile.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/commands";
+
+message Signup {
+  string uuid = 1;
+  entities.user.Profile profile = 2;
+}
+
+message VerifyUser {
+  string uuid = 1;
+  string verify_user_jwt = 2;
+}
