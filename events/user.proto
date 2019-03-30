@@ -3,6 +3,7 @@ package event;
 
 import "events/status.proto";
 import "user/user.proto";
+import "user/profile.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
@@ -17,4 +18,14 @@ message UserVerificationEmailSent {
   event.Status event_status = 2;
   entities.user.User user = 3;
   string verify_user_jwt = 4;
+}
+
+message SignupRequested {
+  string uuid = 1;
+  entities.user.Profile profile = 2;
+}
+
+message VerifyUserRequested {
+  string uuid = 1;
+  string verify_user_jwt = 2;
 }

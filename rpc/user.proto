@@ -1,12 +1,11 @@
 syntax = "proto3";
 package rpc;
 
-import "commands/user.proto";
 import "events/user.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
  
 service User {
-  rpc Signup(command.Signup) returns (event.UserVerificationEmailSent);
-  rpc VerifyUser(command.VerifyUser) returns (event.Signedup);
+  rpc Signup(event.SignupRequested) returns (event.UserVerificationEmailSent);
+  rpc VerifyUser(event.VerifyUserRequested) returns (event.Signedup);
 }

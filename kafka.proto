@@ -4,14 +4,8 @@ package entities;
 option go_package = "github.com/ilhammhdd/kudaki-entities";
 
 enum Topics {
-  USER = 0;
-  MOUNTAIN = 1;
-  KUDAKI_EVENT = 2;
-  RENTAL = 3;
-}
-
-enum Partition {
-  EVENT = 0;
-  COMMAND = 1;
-  QUERY = 2;
+  SIGNED_UP = 0;
+  USER_VERIFICATION_EMAIL_SENT = 1;
+  SIGN_UP_REQUESTED = 2;
+  VERIFY_USER_REQUESTED = 3;
 }
