@@ -1,0 +1,15 @@
+syntax = "proto3";
+package event.topic;
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+
+enum User {
+  SIGNED_UP = 0;
+  USER_VERIFICATION_EMAIL_SENT = 1;
+  SIGN_UP_REQUESTED = 2;
+  VERIFY_USER_REQUESTED = 3;
+  LOGGED_IN = 4;
+  LOGIN_REQUESTED = 5;
+  USER_AUTHENTICATION_REQUESTED = 6;
+  USER_AUTHENTICATED = 7;
+}
