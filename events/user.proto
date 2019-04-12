@@ -51,3 +51,17 @@ message UserAuthenticated {
   event.Status event_status = 2;
   entities.user.User user = 3;
 }
+
+message ResetPasswordRequested {
+  string uid = 1;
+  entities.user.Profile profile = 2;
+  string new_password = 3;
+  string old_password = 4;
+}
+
+message PasswordReseted {
+  string uid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
+  string new_password = 4;
+}
