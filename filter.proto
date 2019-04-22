@@ -20,4 +20,5 @@ message Filter {
   Range range = 1;
   repeated Category categories = 2;
   Status status = 3;
+  string name = 4;
 }

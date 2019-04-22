@@ -30,6 +30,12 @@ message VerifyUserRequested {
   string verify_user_jwt = 2;
 }
 
+message UserVerified {
+  string uid = 1;
+  event.Status event_status = 2;
+  string user_uuid = 3;
+}
+
 message LoginRequested {
   string uid = 1;
   entities.user.User user = 2;
@@ -64,4 +70,16 @@ message PasswordReseted {
   event.Status event_status = 2;
   entities.user.User user = 3;
   string new_password = 4;
+}
+
+message UserAuthorizationRequested {
+  string uid = 1;
+  entities.user.Role role = 2;
+  string jwt = 3;
+}
+
+message UserAuthorized {
+  string uid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
 }

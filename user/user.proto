@@ -7,6 +7,7 @@ enum Role {
   USER = 0;
   KUDAKI_TEAM = 1;
   ORGANIZER = 2;
+  ADMIN = 3;
 }
 
 enum AccountType {

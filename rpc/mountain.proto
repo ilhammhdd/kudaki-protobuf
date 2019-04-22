@@ -1,0 +1,13 @@
+syntax = "proto3";
+package rpc;
+
+import "events/mountain.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
+
+service Mountain {
+  rpc CreateMountain(event.CreateMountainRequested)
+      returns (event.MountainCreated);
+  rpc RetrieveMountains(event.RetrieveMountainsRequested)
+      returns (event.MountainsRetrieved);
+}

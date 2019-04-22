@@ -6,9 +6,13 @@ import "events/user.proto";
 option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
 
 service User {
-  rpc Signup(event.SignupRequested) returns (event.UserVerificationEmailSent);
-  rpc VerifyUser(event.VerifyUserRequested) returns (event.Signedup);
+  rpc Signup(event.SignupRequested) returns (event.Signedup);
+  rpc VerifyUser(event.VerifyUserRequested) returns (event.UserVerified);
   rpc Login(event.LoginRequested) returns (event.Loggedin);
-  rpc UserAuthentication (event.UserAuthenticationRequested) returns (event.UserAuthenticated);
-  rpc ResetPassword(event.ResetPasswordRequested) returns (event.PasswordReseted);
+  rpc UserAuthentication(event.UserAuthenticationRequested)
+      returns (event.UserAuthenticated);
+  rpc ResetPassword(event.ResetPasswordRequested)
+      returns (event.PasswordReseted);
+  rpc UserAuthorization(event.UserAuthorizationRequested)
+      returns (event.UserAuthorized);
 }

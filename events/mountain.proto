@@ -1,0 +1,25 @@
+syntax = "proto3";
+package event;
+
+import "mountain/mountain.proto";
+import "events/status.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+
+message CreateMountainRequested {
+  string uid = 1;
+  entities.mountain.Mountain mountain = 2;
+}
+
+message MountainCreated {
+  string uid = 1;
+  event.Status event_status = 2;
+  entities.mountain.Mountain mountain = 3;
+}
+
+message RetrieveMountainsRequested { string uid = 1; }
+
+message MountainsRetrieved {
+  string uid = 1;
+  entities.mountain.Mountains mountains = 2;
+}

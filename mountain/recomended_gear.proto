@@ -1,0 +1,13 @@
+syntax = "proto3";
+package entities.mountain;
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/mountain";
+
+message RecomendedGear {
+  string uuid = 1;
+  string mountain_uuid = 2;
+  int32 total = 3;
+  string unit = 4;
+  int32 person = 5;
+  string description = 6;
+}

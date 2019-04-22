@@ -1,0 +1,16 @@
+syntax = "proto3";
+package entities.mountain;
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/mountain";
+
+message Mountain {
+  string uuid = 1;
+  string name = 2;
+  int32 height = 3;
+  double latitude = 4;
+  double longitude = 5;
+  string description = 6;
+  double difficulty = 7;
+}
+
+message Mountains { repeated Mountain mountains = 1; }
