@@ -3,7 +3,7 @@ package event.topic;
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
-enum User {
+enum UserTopic {
   SIGNED_UP = 0;
   USER_VERIFICATION_EMAIL_SENT = 1;
   SIGN_UP_REQUESTED = 2;
@@ -17,11 +17,17 @@ enum User {
   USER_AUTHORIZATION_REQUESTED = 10;
   USER_AUTHORIZED = 11;
   USER_VERIFIED = 12;
+  USER_RETRIEVED = 13;
 }
 
-enum Mountain {
+enum MountainTopic {
   CREATE_MOUNTAIN_REQUESTED = 0;
   MOUNTAIN_CREATED = 1;
   RETRIEVE_MOUNTAINS_REQUESTED = 2;
   MOUNTAINS_RETRIEVED = 3;
+}
+
+enum StoreTopic {
+  ADD_STOREFRONT_ITEM_REQUESTED = 0;
+  STOREFRONT_ITEM_ADDED = 1;
 }

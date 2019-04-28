@@ -83,3 +83,9 @@ message UserAuthorized {
   event.Status event_status = 2;
   entities.user.User user = 3;
 }
+
+message UserRetrieved {
+  string uuid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
+}

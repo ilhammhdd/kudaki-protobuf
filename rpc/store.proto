@@ -1,0 +1,11 @@
+syntax = "proto3";
+package rpc;
+
+import "events/store.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
+
+service Store {
+  rpc AddStorefrontItemRequested(event.AddStorefrontItemRequested)
+      returns (event.StorefrontItemAdded);
+}

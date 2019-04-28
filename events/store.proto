@@ -1,0 +1,18 @@
+syntax = "proto3";
+package event;
+
+import "store/item.proto"; 
+import "events/status.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+
+message AddStorefrontItemRequested {
+  string uuid = 1;
+  entities.store.Item item = 3;
+}
+
+message StorefrontItemAdded {
+  string uuid = 1;
+  entities.store.Item item = 3;
+  event.Status event_status = 4;
+}
