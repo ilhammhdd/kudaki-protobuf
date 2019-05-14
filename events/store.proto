@@ -16,3 +16,14 @@ message StorefrontItemAdded {
   entities.store.Item item = 3;
   event.Status event_status = 4;
 }
+
+message DeleteStorefrontItemRequested {
+  string uuid = 1;
+  entities.store.Item item = 2;
+}
+
+message StorefrontItemDeleted {
+  string uuid = 1;
+  entities.store.Item item = 2;
+  event.Status event_status = 3;
+}

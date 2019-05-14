@@ -8,4 +8,5 @@ option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
 service Store {
   rpc AddStorefrontItemRequested(event.AddStorefrontItemRequested)
       returns (event.StorefrontItemAdded);
+  rpc DeleteStorefrontItem (event.DeleteStorefrontItemRequested) returns (event.StorefrontItemDeleted);
 }
