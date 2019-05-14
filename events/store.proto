@@ -32,10 +32,15 @@ message StorefrontItemDeleted {
 message RetrieveStorefrontItemsRequested {
   string uid = 1;
   entities.user.User user = 2;
+  int32 from = 3;
+  int32 limit = 4;
 }
 
 message StorefrontItemsRetrieved {
   string uid = 1;
   entities.store.Items items = 2;
   event.Status event_status = 3; 
+  int32 from = 4;
+  int32 limit = 5;
+  int32 to = 6;
 }
