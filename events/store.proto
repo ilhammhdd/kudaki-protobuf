@@ -3,6 +3,7 @@ package event;
 
 import "store/item.proto"; 
 import "events/status.proto";
+import "user/user.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
@@ -26,4 +27,15 @@ message StorefrontItemDeleted {
   string uuid = 1;
   entities.store.Item item = 2;
   event.Status event_status = 3;
+}
+
+message RetrieveStorefrontItemRequested {
+  string uuid = 1;
+  entities.user.User user = 2;
+}
+
+message StorefrontItemRetrieved {
+  string uuid = 1;
+  entities.store.Items items = 2;
+  event.Status event_status = 3; 
 }
