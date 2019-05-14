@@ -17,4 +17,4 @@ message Item {
   float rating = 10;
 }
 
-message Items { repeated Items items = 1; }
+message Items { repeated Item items = 1; }
