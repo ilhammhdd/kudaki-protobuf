@@ -9,5 +9,5 @@ service Store {
   rpc AddStorefrontItemRequested(event.AddStorefrontItemRequested)
       returns (event.StorefrontItemAdded);
   rpc DeleteStorefrontItem (event.DeleteStorefrontItemRequested) returns (event.StorefrontItemDeleted);
-  rpc RetrieveStorefrontItem (event.RetrieveStorefrontItemRequested) returns (event.StorefrontItemRetrieved);
+  rpc RetrieveStorefrontItem (event.RetrieveStorefrontItemsRequested) returns (event.StorefrontItemsRetrieved);
 }
