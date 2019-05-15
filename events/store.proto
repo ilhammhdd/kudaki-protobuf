@@ -29,6 +29,19 @@ message StorefrontItemDeleted {
   event.Status event_status = 3;
 }
 
+message UpdateStorefrontItemRequested {
+  string uid = 1;
+  entities.store.Item item = 2;
+  entities.user.User user = 3;
+}
+
+message StorefrontItemUpdated {
+  string uid = 1;
+  entities.store.Item item = 2;
+  entities.user.User user = 3;
+  event.Status event_status = 4;
+}
+
 message RetrieveStorefrontItemsRequested {
   string uid = 1;
   entities.user.User user = 2;
