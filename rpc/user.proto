@@ -11,8 +11,7 @@ service User {
   rpc Login(event.LoginRequested) returns (event.Loggedin);
   rpc UserAuthentication(event.UserAuthenticationRequested)
       returns (event.UserAuthenticated);
-  rpc ResetPassword(event.ResetPasswordRequested)
-      returns (event.PasswordReseted);
   rpc UserAuthorization(event.UserAuthorizationRequested)
       returns (event.UserAuthorized);
+  rpc ChangePassword(event.ChangePasswordRequested) returns (event.PasswordChanged);
 }

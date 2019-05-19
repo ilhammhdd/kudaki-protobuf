@@ -18,6 +18,8 @@ enum UserTopic {
   USER_AUTHORIZED = 11;
   USER_VERIFIED = 12;
   USER_RETRIEVED = 13;
+  CHANGE_PASSWORD_REQUESTED = 14;
+  PASSWORD_CHANGED = 15;
 }
 
 enum MountainTopic {
