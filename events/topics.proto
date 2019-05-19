@@ -20,6 +20,7 @@ enum UserTopic {
   USER_RETRIEVED = 13;
   CHANGE_PASSWORD_REQUESTED = 14;
   PASSWORD_CHANGED = 15;
+  RESET_PASSWORD_EMAIL_SENT = 16;
 }
 
 enum MountainTopic {

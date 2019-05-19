@@ -14,4 +14,5 @@ service User {
   rpc UserAuthorization(event.UserAuthorizationRequested)
       returns (event.UserAuthorized);
   rpc ChangePassword(event.ChangePasswordRequested) returns (event.PasswordChanged);
+  rpc ResetPassword(event.ResetPasswordRequested) returns (event.ResetPasswordEmailSent);
 }

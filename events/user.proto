@@ -89,3 +89,21 @@ message UserRetrieved {
   event.Status event_status = 2;
   entities.user.User user = 3;
 }
+
+message ResetPasswordRequested {
+  string uid = 1;
+  string email = 2;
+}
+
+message ResetPasswordEmailSent {
+  string uuid = 1;
+  string email = 2;
+  string key = 3;
+  event.Status event_status = 4;
+}
+
+message PasswordReseted {
+  string uid = 1;
+  string email = 2;
+  event.Status event_status = 3;
+}
