@@ -96,10 +96,11 @@ message ResetPasswordRequested {
 }
 
 message ResetPasswordEmailSent {
-  string uuid = 1;
+  string uid = 1;
   string email = 2;
   string key = 3;
   event.Status event_status = 4;
+  string hashed_key = 5;
 }
 
 message PasswordReseted {
