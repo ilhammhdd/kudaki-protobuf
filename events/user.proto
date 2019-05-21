@@ -102,6 +102,12 @@ message ResetPasswordEmailSent {
   event.Status event_status = 4;
 }
 
+message ResetPasswordChangeRequested {
+  string uid = 1;
+  string token = 2;
+  string new_password = 3;
+}
+
 message PasswordReseted {
   string uid = 1;
   string email = 2;
