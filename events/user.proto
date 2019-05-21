@@ -90,7 +90,7 @@ message UserRetrieved {
   entities.user.User user = 3;
 }
 
-message ResetPasswordRequested {
+message SendResetPasswordEmailRequested {
   string uid = 1;
   string email = 2;
 }
@@ -102,7 +102,7 @@ message ResetPasswordEmailSent {
   event.Status event_status = 4;
 }
 
-message ResetPasswordChangeRequested {
+message ResetPasswordRequested {
   string uid = 1;
   string token = 2;
   string new_password = 3;
