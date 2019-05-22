@@ -11,4 +11,7 @@ service Store {
   rpc DeleteStorefrontItem (event.DeleteStorefrontItemRequested) returns (event.StorefrontItemDeleted);
   rpc RetrieveStorefrontItem (event.RetrieveStorefrontItemsRequested) returns (event.StorefrontItemsRetrieved);
   rpc UpdateStorefrontItem (event.UpdateStorefrontItemRequested) returns (event.StorefrontItemUpdated);
+  rpc RetrieveItems(event.RetrieveItemsRequested) returns (event.ItemsRetrieved);
+  rpc RetrieveItem (event.RetrieveItemRequested) returns (event.ItemRetrieved);
+  rpc SearchItems (event.SearchItemsRequested) returns (event.ItemsSearched);
 }

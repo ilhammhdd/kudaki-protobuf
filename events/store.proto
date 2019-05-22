@@ -57,3 +57,43 @@ message StorefrontItemsRetrieved {
   int32 limit = 5;
   int32 last = 6;
 }
+
+message RetrieveItemsRequested {
+  string uid = 1;
+  int32 from = 2;
+  int32 limit = 3;
+}
+
+message ItemsRetrieved {
+  string uid = 1;
+  entities.store.Items items = 2;
+  event.Status event_status = 3; 
+  int32 first = 4;
+  int32 limit = 5;
+  int32 last = 6;
+}
+
+message RetrieveItemRequested {
+  string uid = 1;
+  string item_uuid = 2;
+  entities.user.User user = 3;
+}
+
+message ItemRetrieved {
+  string uid = 1;
+  entities.store.Item item = 2;
+  entities.user.User user = 3;
+}
+
+message SearchItemsRequested {
+  string uid = 1;
+  entities.user.User user = 2;
+  string keyword = 3;
+}
+
+message ItemsSearched {
+  string uid = 1;
+  entities.user.User user = 2;
+  string keyword = 3;
+  entities.store.Items items = 4; 
+}
