@@ -83,6 +83,7 @@ message ItemRetrieved {
   string uid = 1;
   entities.store.Item item = 2;
   entities.user.User user = 3;
+  event.Status event_status = 4;
 }
 
 message SearchItemsRequested {
@@ -96,4 +97,5 @@ message ItemsSearched {
   entities.user.User user = 2;
   string keyword = 3;
   entities.store.Items items = 4; 
+  event.Status event_status = 5;
 }
