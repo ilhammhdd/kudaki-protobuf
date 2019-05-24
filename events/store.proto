@@ -98,6 +98,9 @@ message ItemsSearched {
   string uid = 1;
   entities.user.User user = 2;
   string keyword = 3;
-  entities.store.Items items = 4; 
+  entities.store.Items items = 4;
   event.Status event_status = 5;
+  uint64 first = 6;
+  int32 limit = 8;
+  uint64 last = 7;
 }
