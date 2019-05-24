@@ -90,6 +90,8 @@ message SearchItemsRequested {
   string uid = 1;
   entities.user.User user = 2;
   string keyword = 3;
+  uint64 from = 4;
+  int32 limit = 5;
 }
 
 message ItemsSearched {
