@@ -1,0 +1,17 @@
+syntax = "proto3";
+package entities.rental;
+
+import "store/item.proto";
+import "user/user.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/rental";
+
+message Cart {
+    string uuid = 1;
+    entities.store.Items items = 2;
+    entities.user.User user = 3;
+}
+
+message Carts {
+    repeated Cart carts = 1;
+}

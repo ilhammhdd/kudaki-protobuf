@@ -6,6 +6,5 @@ import "events/rental.proto";
 option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
 
 service Rental {
-  rpc AddFrontstoreItem(event.AddStorefrontItemRequested)
-      returns (event.FrontstoreItemAdded);
+  rpc SubmitRental (event.RentalSubmissionRequested) returns (event.RentalSubmitted);
 }

@@ -1,0 +1,36 @@
+syntax = "proto3";
+package event;
+
+import "rental/cart.proto";
+import "events/status.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+
+message RentalSubmissionRequested {
+    string uid = 1;
+    entities.rental.Cart cart = 2;
+}
+
+message RentalSubmitted {
+    string uid = 1;
+    entities.rental.Cart cart = 2;
+    event.Status event_status = 3;
+}
+
+// this fact can be categorized as query in CQRS, trying to leverage search engine to handle this kind of fact.
+// message RetrieveRentalSubmissionsRequested {
+//     string uid = 1;
+//     entities.store.Storefront storefront = 2;
+// }
+
+// message RentalSubmissionsRetrieved {
+//     string uid = 1;
+//     entities.store.Storefront storefront = 2;
+//     entities.rental.Carts carts = 3;
+// }
+
+message RentalSubmissionReviewed {
+    string uid = 1;
+    entities.rental.Cart cart = 2;
+    event.Status event_status = 3;
+}
