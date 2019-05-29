@@ -6,5 +6,5 @@ import "events/rental.proto";
 option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
 
 service Rental {
-  rpc SubmitRental (event.RentalSubmissionRequested) returns (event.RentalSubmitted);
+  rpc SubmitRental (event.CheckoutRequested) returns (event.Checkedout);
 }
