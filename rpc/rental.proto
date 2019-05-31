@@ -7,4 +7,5 @@ option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
 
 service Rental {
   rpc SubmitRental (event.CheckoutRequested) returns (event.Checkedout);
+  rpc AddCartItem (event.AddCartItemRequested) returns (event.CartItemAdded);
 }

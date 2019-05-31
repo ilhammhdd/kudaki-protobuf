@@ -10,6 +10,9 @@ message Cart {
     string uuid = 1;
     repeated entities.store.Item items = 2;
     entities.user.User user = 3;
+    bool open = 4;
+    uint32 total_price = 5;
+    uint32 total_items = 6;
 }
 
 message Carts {

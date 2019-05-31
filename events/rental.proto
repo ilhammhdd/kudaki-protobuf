@@ -1,6 +1,7 @@
 syntax = "proto3";
 package event;
 
+import "store/item.proto";
 import "rental/cart.proto";
 import "events/status.proto";
 
@@ -21,4 +22,19 @@ message CheckoutReviewed {
     string uid = 1;
     entities.rental.Cart cart = 2;
     event.Status event_status = 3;
+}
+
+message AddCartItemRequested {
+    string uid = 1;
+    string cart_uuid = 2;
+    string storefront_uuid = 3;
+    string item_uuid = 4;
+    uint32 item_amount = 5;
+}
+
+message CartItemAdded {
+    string uid = 1;
+    entities.store.Item item = 2;
+    entities.rental.Cart cart = 3;
+    event.Status event_status = 4;
 }
