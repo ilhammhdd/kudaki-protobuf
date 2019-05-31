@@ -26,10 +26,8 @@ message CheckoutReviewed {
 
 message AddCartItemRequested {
     string uid = 1;
-    string cart_uuid = 2;
-    string storefront_uuid = 3;
-    string item_uuid = 4;
-    uint32 item_amount = 5;
+    entities.rental.Cart cart = 2;
+    entities.store.Item item = 3;
 }
 
 message CartItemAdded {
