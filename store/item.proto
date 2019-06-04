@@ -11,7 +11,6 @@ message Item {
   string name = 3;
   int32 amount = 4;
   string unit = 5;
-  uint64 id = 6;
   int32 price = 7;
   string description = 8;
   string photo = 9;

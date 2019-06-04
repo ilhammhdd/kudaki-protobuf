@@ -12,5 +12,4 @@ message CartItem {
     entities.store.Item item = 3;
     uint32 total_amount = 4;
     uint32 total_price = 5;
-    uint64 id = 6;
 }
