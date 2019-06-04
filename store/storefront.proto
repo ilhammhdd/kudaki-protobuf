@@ -8,4 +8,5 @@ message Storefront {
   string user_uuid = 2;
   int32 total_item = 3;
   float rating = 4;
+  uint64 id = 5;
 }
