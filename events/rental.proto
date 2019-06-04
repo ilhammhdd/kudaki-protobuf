@@ -4,6 +4,7 @@ package event;
 import "store/item.proto";
 import "rental/cart.proto";
 import "events/status.proto";
+import "user/user.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
@@ -28,8 +29,9 @@ message AddCartItemRequested {
     string uid = 1;
     string cart_uuid = 2;
     string storefront_uuid = 3;
-    string item_amount = 4;
+    int32 item_amount = 4;
     string item_uuid = 5;
+    entities.user.User user = 6;
 }
 
 message CartItemAdded {
