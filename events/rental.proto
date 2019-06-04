@@ -28,6 +28,7 @@ message AddCartItemRequested {
     string uid = 1;
     entities.rental.Cart cart = 2;
     entities.store.Item item = 3;
+    int32 amount = 4;
 }
 
 message CartItemAdded {
