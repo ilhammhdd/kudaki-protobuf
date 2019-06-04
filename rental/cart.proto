@@ -8,7 +8,6 @@ option go_package = "github.com/ilhammhdd/kudaki-entities/rental";
 
 message Cart {
     string uuid = 1;
-    repeated CartItem cart_items = 2;
     entities.user.User user = 3;
     bool open = 4;
     uint32 total_price = 5;
