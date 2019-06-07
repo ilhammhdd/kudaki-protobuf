@@ -16,5 +16,3 @@ message Item {
   string photo = 9;
   float rating = 10;
 }
-
-message Items { repeated Item items = 1; }

@@ -6,12 +6,9 @@ import "events/store.proto";
 option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
 
 service Store {
-  rpc AddStorefrontItemRequested(event.AddStorefrontItemRequested)
+  rpc AddStorefrontItem(event.AddStorefrontItemRequested)
       returns (event.StorefrontItemAdded);
   rpc DeleteStorefrontItem (event.DeleteStorefrontItemRequested) returns (event.StorefrontItemDeleted);
-  rpc RetrieveStorefrontItem (event.RetrieveStorefrontItemsRequested) returns (event.StorefrontItemsRetrieved);
   rpc UpdateStorefrontItem (event.UpdateStorefrontItemRequested) returns (event.StorefrontItemUpdated);
-  rpc RetrieveItems(event.RetrieveItemsRequested) returns (event.ItemsRetrieved);
-  rpc RetrieveItem (event.RetrieveItemRequested) returns (event.ItemRetrieved);
   rpc SearchItems (event.SearchItemsRequested) returns (event.ItemsSearched);
 }

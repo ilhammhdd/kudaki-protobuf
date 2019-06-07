@@ -10,57 +10,55 @@ option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 message Signedup {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
+  entities.user.Profile profile = 3;
+  SignupRequested signup_requested = 4;
+}
+
+message SignupRequested {
+  string uid = 1;
+  string full_name = 2;
+  string phone_number = 3;
+  string email = 4;
+  string password = 5;
+  string role = 6;
+  string photo = 7;
 }
 
 message UserVerificationEmailSent {
   string uid = 1;
   event.Status event_status = 2;
   entities.user.User user = 3;
-  string verify_user_jwt = 4;
-}
-
-message SignupRequested {
-  string uid = 1;
-  entities.user.Profile profile = 2;
+  string verify_token = 4;
 }
 
 message VerifyUserRequested {
   string uid = 1;
-  string verify_user_jwt = 2;
+  string verify_token = 2;
 }
 
 message UserVerified {
   string uid = 1;
   event.Status event_status = 2;
-  string user_uuid = 3;
+  entities.user.User user = 3;
+  VerifyUserRequested verify_user_requested = 4;
 }
 
 message LoginRequested {
   string uid = 1;
-  entities.user.User user = 2;
+  string email = 2;
+  string password = 3;
 }
 
 message Loggedin {
   string uid = 1;
   event.Status event_status = 2;
   entities.user.User user = 3;
-}
-
-message UserAuthenticationRequested {
-  string uid = 1;
-  string jwt = 2;
-}
-
-message UserAuthenticated {
-  string uid = 1;
-  event.Status event_status = 2;
-  entities.user.User user = 3;
+  LoginRequested login_requested = 4;
 }
 
 message ChangePasswordRequested {
   string uid = 1;
-  entities.user.Profile profile = 2;
+  string kudaki_token = 2;
   string new_password = 3;
   string old_password = 4;
 }
@@ -69,25 +67,7 @@ message PasswordChanged {
   string uid = 1;
   event.Status event_status = 2;
   entities.user.User user = 3;
-  string new_password = 4;
-}
-
-message UserAuthorizationRequested {
-  string uid = 1;
-  entities.user.Role role = 2;
-  string jwt = 3;
-}
-
-message UserAuthorized {
-  string uid = 1;
-  event.Status event_status = 2;
-  entities.user.User user = 3;
-}
-
-message UserRetrieved {
-  string uuid = 1;
-  event.Status event_status = 2;
-  entities.user.User user = 3;
+  ChangePasswordRequested change_password_requested = 4;
 }
 
 message SendResetPasswordEmailRequested {
@@ -100,11 +80,12 @@ message ResetPasswordEmailSent {
   string email = 2;
   string token = 3;
   event.Status event_status = 4;
+  SendResetPasswordEmailRequested sendReset_password_email_requested = 5;
 }
 
 message ResetPasswordRequested {
   string uid = 1;
-  string token = 2;
+  string reset_token = 2;
   string new_password = 3;
 }
 
@@ -112,4 +93,5 @@ message PasswordReseted {
   string uid = 1;
   string email = 2;
   event.Status event_status = 3;
+  ResetPasswordRequested reset_password_requested = 4;
 }

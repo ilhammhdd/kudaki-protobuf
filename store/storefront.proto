@@ -1,11 +1,13 @@
 syntax = "proto3";
 package entities.store;
 
+import "user/user.proto";
+
 option go_package = "github.com/ilhammhdd/kudaki-entities/store";
 
 message Storefront {
   string uuid = 1;
-  string user_uuid = 2;
+  entities.user.User user = 2;
   int32 total_item = 3;
   float rating = 4;
 }

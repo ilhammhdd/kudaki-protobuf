@@ -4,24 +4,20 @@ package event;
 import "rental/cart.proto";
 import "events/status.proto";
 import "user/user.proto";
+import "rental/cart_item.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
 message CheckoutRequested {
     string uid = 1;
-    entities.rental.Cart cart = 2;
+    string cart_uuid = 2;
 }
 
 message Checkedout {
     string uid = 1;
     entities.rental.Cart cart = 2;
     event.Status event_status = 3;
-}
-
-message CheckoutReviewed {
-    string uid = 1;
-    entities.rental.Cart cart = 2;
-    event.Status event_status = 3;
+    CheckoutRequested checkout_requested = 4;
 }
 
 message AddCartItemRequested {
@@ -37,4 +33,5 @@ message CartItemAdded {
     string uid = 1;
     entities.rental.CartItem cart_item = 2;
     event.Status event_status = 4;
+    AddCartItemRequested add_cart_item_requested = 5;
 }

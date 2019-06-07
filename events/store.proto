@@ -4,103 +4,102 @@ package event;
 import "store/item.proto"; 
 import "events/status.proto";
 import "user/user.proto";
+import "store/storefront.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
 message AddStorefrontItemRequested {
   string uid = 1;
-  entities.store.Item item = 3;
+  string name = 4;
+  int32 amount = 5;
+  string unit = 6;
+  int32 price = 7;
+  string description = 8;
+  string photo = 9;
 }
 
 message StorefrontItemAdded {
   string uid = 1;
+  entities.store.Storefront storefront = 2;
   entities.store.Item item = 3;
   event.Status event_status = 4;
+  AddStorefrontItemRequested add_storefront_item_requested = 5;
 }
 
 message DeleteStorefrontItemRequested {
   string uid = 1;
-  entities.store.Item item = 2;
+  string item_uuid = 2;
 }
 
 message StorefrontItemDeleted {
   string uid = 1;
   entities.store.Item item = 2;
   event.Status event_status = 3;
+  entities.store.Storefront storefront = 4;
+  entities.user.User user = 5;
+  DeleteStorefrontItemRequested delete_storefront_item_requested = 6;
 }
 
 message UpdateStorefrontItemRequested {
   string uid = 1;
-  entities.store.Item item = 2;
-  entities.user.User user = 3;
+  string kudaki_token = 2;
+  string uuid = 3;
+  string name = 4;
+  int32 amount = 5;
+  string unit = 6;
+  int32 price = 7;
+  string description = 8;
+  string photo = 9;
 }
 
 message StorefrontItemUpdated {
   string uid = 1;
   entities.store.Item item = 2;
-  entities.user.User user = 3;
+  entities.store.Storefront storefront = 3;
   event.Status event_status = 4;
+  entities.user.User user = 5;
+  UpdateStorefrontItemRequested update_storefront_item_requested = 6;
 }
 
 message RetrieveStorefrontItemsRequested {
   string uid = 1;
-  entities.user.User user = 2;
-  int32 from = 3;
+  string kudaki_token = 2;
+  int32 offset = 3;
   int32 limit = 4;
-}
-
-message StorefrontItemsRetrieved {
-  string uid = 1;
-  entities.store.Items items = 2;
-  event.Status event_status = 3; 
-  int32 first = 4;
-  int32 limit = 5;
-  int32 last = 6;
 }
 
 message RetrieveItemsRequested {
   string uid = 1;
-  int32 from = 2;
+  int32 offset = 2;
   int32 limit = 3;
-}
-
-message ItemsRetrieved {
-  string uid = 1;
-  entities.store.Items items = 2;
-  event.Status event_status = 3; 
-  int32 first = 4;
-  int32 limit = 5;
-  int32 last = 6;
+  string kudaki_token = 4;
 }
 
 message RetrieveItemRequested {
   string uid = 1;
   string item_uuid = 2;
-  entities.user.User user = 3;
-}
-
-message ItemRetrieved {
-  string uid = 1;
-  entities.store.Item item = 2;
-  entities.user.User user = 3;
-  event.Status event_status = 4;
+  string kudaki_token = 3;
 }
 
 message SearchItemsRequested {
   string uid = 1;
-  entities.user.User user = 2;
+  string kudaki_token = 2;
   string keyword = 3;
-  uint64 from = 4;
+  int32 offset = 4;
   int32 limit = 5;
+  int32 amount = 6;
+  int32 price_from = 7;
+  int32 price_to = 8;
+  float rating_from = 9;
+  float rating_to = 10;
 }
 
 message ItemsSearched {
   string uid = 1;
   entities.user.User user = 2;
-  string keyword = 3;
-  entities.store.Items items = 4;
-  event.Status event_status = 5;
-  uint64 first = 6;
-  int32 limit = 8;
-  uint64 last = 7;
+  repeated entities.store.Item items = 3;
+  event.Status event_status = 4;
+  int32 offset= 5;
+  int32 limit = 6;
+  SearchItemsRequested search_items_requested = 7;
 }
