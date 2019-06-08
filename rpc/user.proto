@@ -2,13 +2,42 @@ syntax = "proto3";
 package rpc;
 
 import "events/user.proto";
+import "events/status.proto";
+import "user/user.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
+
+message UserAuthenticationRequested {
+  string uid = 1;
+  string jwt = 2;
+}
+
+message UserAuthenticated {
+  string uid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
+}
+
+message UserAuthorizationRequested {
+  string uid = 1;
+  entities.user.Role role = 2;
+  string jwt = 3;
+}
+
+message UserAuthorized {
+  string uid = 1;
+  event.Status event_status = 2;
+  entities.user.User user = 3;
+}
 
 service User {
   rpc Signup(event.SignupRequested) returns (event.Signedup);
   rpc VerifyUser(event.VerifyUserRequested) returns (event.UserVerified);
   rpc Login(event.LoginRequested) returns (event.Loggedin);
+  rpc UserAuthentication(UserAuthenticationRequested)
+      returns (UserAuthenticated);
+  rpc UserAuthorization(UserAuthorizationRequested)
+      returns (UserAuthorized);
   rpc ChangePassword(event.ChangePasswordRequested) returns (event.PasswordChanged);
   rpc ResetPassword(event.ResetPasswordRequested) returns (event.ResetPasswordEmailSent);
 }
