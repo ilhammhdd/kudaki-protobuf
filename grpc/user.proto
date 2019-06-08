@@ -5,7 +5,7 @@ import "events/user.proto";
 import "events/status.proto";
 import "user/user.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-externals/grpc_services";
+option go_package = "github.com/ilhammhdd/kudaki-externals/grpc";
 
 message UserAuthenticationRequested {
   string uid = 1;
