@@ -3,7 +3,7 @@ package rpc;
 
 import "events/rental.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
+option go_package = "github.com/ilhammhdd/kudaki-externals/grpc_services";
 
 service Rental {
   rpc Checkout(event.CheckoutRequested) returns (event.Checkedout);

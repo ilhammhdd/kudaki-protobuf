@@ -3,7 +3,7 @@ package rpc;
 
 import "events/mountain.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-entities/rpc";
+option go_package = "github.com/ilhammhdd/kudaki-externals/grpc_services";
 
 service Mountain {
   rpc CreateMountain(event.CreateMountainRequested)
