@@ -91,7 +91,7 @@ message ResetPasswordRequested {
 
 message PasswordReseted {
   string uid = 1;
-  string email = 2;
+  entities.user.User user = 2;
   event.Status event_status = 3;
   ResetPasswordRequested reset_password_requested = 4;
 }
