@@ -77,8 +77,8 @@ message SendResetPasswordEmailRequested {
 
 message ResetPasswordEmailSent {
   string uid = 1;
-  string email = 2;
-  string token = 3;
+  entities.user.User user = 2;
+  string rest_token = 3;
   event.Status event_status = 4;
   SendResetPasswordEmailRequested sendReset_password_email_requested = 5;
 }
