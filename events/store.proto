@@ -25,6 +25,7 @@ message StorefrontItemAdded {
   entities.store.Item item = 3;
   event.Status event_status = 4;
   AddStorefrontItemRequested add_storefront_item_requested = 5;
+  entities.user.User user = 6;
 }
 
 message DeleteStorefrontItemRequested {
