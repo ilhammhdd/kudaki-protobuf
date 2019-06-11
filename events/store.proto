@@ -16,6 +16,7 @@ message AddStorefrontItemRequested {
   int32 price = 7;
   string description = 8;
   string photo = 9;
+  string kudaki_token = 10;
 }
 
 message StorefrontItemAdded {
@@ -29,6 +30,7 @@ message StorefrontItemAdded {
 message DeleteStorefrontItemRequested {
   string uid = 1;
   string item_uuid = 2;
+  string kudaki_token = 3;
 }
 
 message StorefrontItemDeleted {
