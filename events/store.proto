@@ -64,28 +64,40 @@ message StorefrontItemUpdated {
   UpdateStorefrontItemRequested update_storefront_item_requested = 6;
 }
 
-message RetrieveStorefrontItemsRequested {
-  string uid = 1;
+message RetrieveUsersStorefrontItemsRequested {
+  string uuid = 1;
   string kudaki_token = 2;
   int32 offset = 3;
   int32 limit = 4;
 }
 
+message RetrieveUsersStorefrontItemRequested {
+  string uuid = 1;
+  string kudaki_token = 2;
+  string item_uuid = 3;
+}
+
+message RetrieveStorefrontItemsRequested {
+  string uuid = 1;
+  string kudaki_token = 2;
+  string storefront_uuid = 3;
+}
+
 message RetrieveItemsRequested {
-  string uid = 1;
+  string uuid = 1;
   int32 offset = 2;
   int32 limit = 3;
   string kudaki_token = 4;
 }
 
 message RetrieveItemRequested {
-  string uid = 1;
+  string uuid = 1;
   string item_uuid = 2;
   string kudaki_token = 3;
 }
 
 message SearchItemsRequested {
-  string uid = 1;
+  string uuid = 1;
   string kudaki_token = 2;
   string keyword = 3;
   int32 offset = 4;
@@ -95,14 +107,4 @@ message SearchItemsRequested {
   int32 price_to = 8;
   float rating_from = 9;
   float rating_to = 10;
-}
-
-message ItemsSearched {
-  string uid = 1;
-  entities.user.User user = 2;
-  repeated entities.store.Item items = 3;
-  event.Status event_status = 4;
-  int32 offset= 5;
-  int32 limit = 6;
-  SearchItemsRequested search_items_requested = 7;
 }
