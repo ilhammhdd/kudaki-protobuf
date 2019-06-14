@@ -35,3 +35,10 @@ message CartItemAdded {
     event.Status event_status = 4;
     AddCartItemRequested add_cart_item_requested = 5;
 }
+
+message RetreiveCartItemsRequested {
+    string uuid = 1;
+    string kudaki_token = 2;
+    int32 offset = 3;
+    int32 limit = 4;
+}
