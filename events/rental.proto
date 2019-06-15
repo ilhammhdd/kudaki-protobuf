@@ -4,6 +4,7 @@ package event;
 import "rental/cart.proto";
 import "events/status.proto";
 import "rental/cart_item.proto";
+import "user/user.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-entities/events";
 
@@ -41,4 +42,17 @@ message RetreiveCartItemsRequested {
     string kudaki_token = 2;
     int32 offset = 3;
     int32 limit = 4;
+}
+
+message DeleteCartItemRequested {
+    string uid = 1;
+    string kudaki_token = 2;
+    string cart_item_uuid = 3;
+}
+
+message CartItemDeleted {
+    string uid = 1;
+    entities.user.User user = 2;
+    event.Status event_status = 3;
+    DeleteCartItemRequested delete_cart_item_requested = 4;
 }
