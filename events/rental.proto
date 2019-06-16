@@ -55,4 +55,5 @@ message CartItemDeleted {
     entities.user.User user = 2;
     event.Status event_status = 3;
     DeleteCartItemRequested delete_cart_item_requested = 4;
+    entities.rental.CartItem cart_item = 5;
 }
