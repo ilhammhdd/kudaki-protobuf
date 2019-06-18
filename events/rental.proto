@@ -57,3 +57,18 @@ message CartItemDeleted {
     DeleteCartItemRequested delete_cart_item_requested = 4;
     entities.rental.CartItem cart_item = 5;
 }
+
+message UpdateCartItemRequested {
+    string uid = 1;
+    string kudaki_token = 2;
+    int32 total_item = 3;
+    string cart_item_uuid = 4;
+}
+
+message CartItemUpdated {
+    string uid = 1;
+    entities.user.User user = 2;
+    entities.rental.CartItem cart_item = 3;
+    UpdateCartItemRequested update_cart_item_requested = 4;
+    event.Status event_status = 5;
+}
