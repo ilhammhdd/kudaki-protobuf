@@ -68,7 +68,8 @@ message UpdateCartItemRequested {
 message CartItemUpdated {
     string uid = 1;
     entities.user.User user = 2;
-    entities.rental.CartItem cart_item = 3;
-    UpdateCartItemRequested update_cart_item_requested = 4;
+    entities.rental.CartItem initial_cart_item = 3;
+    UpdateCartItemRequested updated_cart_item_requested = 4;
     event.Status event_status = 5;
+    entities.rental.CartItem updated_cart_item = 6;
 }
