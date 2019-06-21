@@ -84,10 +84,19 @@ message RetrieveStorefrontItemsRequested {
 }
 
 message RetrieveItemsRequested {
-  string uuid = 1;
+  string uid = 1;
   int32 offset = 2;
   int32 limit = 3;
   string kudaki_token = 4;
+}
+
+message ItemsRetrieved {
+  string uid = 1;
+  int32 offset = 2;
+  int32 limit = 3;
+  entities.user.User user = 4;
+  event.Status event_status = 5;
+  repeated entities.store.Item items = 6;
 }
 
 message RetrieveItemRequested {
