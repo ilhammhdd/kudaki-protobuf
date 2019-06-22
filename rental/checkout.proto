@@ -1,0 +1,11 @@
+syntax = "proto3";
+package entities.rental;
+
+option go_package = "github.com/ilhammhdd/kudaki-entities/rental";
+
+message Checkout {
+    string uuid = 1;
+    entities.rental.Cart cart = 2;
+    uint64 issued_at = 3;
+    uint64 created_at = 4;
+}

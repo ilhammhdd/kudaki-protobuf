@@ -2,6 +2,8 @@ syntax = "proto3";
 package rpc;
 
 import "events/store.proto";
+import "store/storefront.proto";
+import "store/item.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-externals/grpc";
 
@@ -14,4 +16,14 @@ service Store {
 
 service Items {
   rpc RetrieveItems (event.RetrieveItemsRequested) returns (event.ItemsRetrieved);
+}
+
+service StoreManagement {
+  rpc AddStorefront (entities.store.Storefront) returns (entities.store.Storefront);
+  rpc UpdateStorefront (entities.store.Storefront) returns (entities.store.Storefront);
+  rpc DeleteStorefront (entities.store.Storefront) returns (entities.store.Storefront);
+
+  rpc AddItem (entities.store.Item) returns (entities.store.Item);
+  rpc UpdateItem (entities.store.Item) returns (entities.store.Item);
+  rpc DeleteItem (entities.store.Item) returns (entities.store.Item);
 }

@@ -26,3 +26,9 @@ message User {
   AccountType account_type = 7;
   uint64 created_at = 8;
 }
+
+message UnverifiedUser {
+  string uuid = 1;
+  entities.user.User user = 2;
+  uint64 created_at = 3;
+}
