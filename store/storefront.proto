@@ -10,4 +10,5 @@ message Storefront {
   entities.user.User user = 2;
   int32 total_item = 3;
   float rating = 4;
+  uint64 created_at = 5;
 }

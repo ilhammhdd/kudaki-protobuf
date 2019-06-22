@@ -11,4 +11,5 @@ message Profile {
   string photo = 3;
   int32 reputation = 4;
   entities.user.User user = 5;
+  uint64 created_at = 6;
 }

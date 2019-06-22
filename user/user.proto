@@ -24,4 +24,5 @@ message User {
   Role role = 5;
   string phone_number = 6;
   AccountType account_type = 7;
+  uint64 created_at = 8;
 }

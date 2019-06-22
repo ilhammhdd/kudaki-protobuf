@@ -11,4 +11,5 @@ message Cart {
     bool open = 4;
     uint32 total_price = 5;
     uint32 total_items = 6;
+    uint64 created_at = 7;
 }

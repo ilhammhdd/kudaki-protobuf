@@ -15,4 +15,5 @@ message Item {
   string description = 8;
   string photo = 9;
   float rating = 10;
+  uint64 created_at = 11;
 }
