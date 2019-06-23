@@ -1,28 +1,23 @@
 syntax = "proto3";
 package rpc;
 
-import "events/rental.proto";
 import "rental/cart.proto";
 import "rental/cart_item.proto";
 import "rental/checkout.proto";
+import "grpc/status.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-externals/grpc";
 
-service Rental {
-  rpc Checkout(event.CheckoutRequested) returns (event.Checkedout);
-  rpc AddCartItem (event.AddCartItemRequested) returns (event.CartItemAdded);
-}
+service RentalRepo {
+  rpc AddCart (entities.rental.Cart) returns (rpc.Status);
+  rpc UpdateCart (entities.rental.Cart) returns (rpc.Status);
+  rpc DeleteCart (entities.rental.Cart) returns (rpc.Status);
 
-service RentalManagement {
-  rpc AddCart (entities.rental.Cart) returns (entities.rental.Cart);
-  rpc UpdateCart (entities.rental.Cart) returns (entities.rental.Cart);
-  rpc DeleteCart (entities.rental.Cart) returns (entities.rental.Cart);
+  rpc AddCheckout (entities.rental.Checkout) returns (rpc.Status);
+  rpc UpdateCheckout (entities.rental.Checkout) returns (rpc.Status);
+  rpc DeleteCheckout (entities.rental.Checkout) returns (rpc.Status);
 
-  rpc AddCheckout (entities.rental.Checkout) returns (entities.rental.Checkout);
-  rpc UpdateCheckout (entities.rental.Checkout) returns (entities.rental.Checkout);
-  rpc DeleteCheckout (entities.rental.Checkout) returns (entities.rental.Checkout);
-
-  rpc AddCartItem (entities.rental.CartItem) returns (entities.rental.CartItem);
-  rpc UpdateCartItem (entities.rental.CartItem) returns (entities.rental.CartItem);
-  rpc DeleteCartItem (entities.rental.CartItem) returns (entities.rental.CartItem);
+  rpc AddCartItem (entities.rental.CartItem) returns (rpc.Status);
+  rpc UpdateCartItem (entities.rental.CartItem) returns (rpc.Status);
+  rpc DeleteCartItem (entities.rental.CartItem) returns (rpc.Status);
 }

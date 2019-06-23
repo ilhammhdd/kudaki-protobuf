@@ -1,29 +1,18 @@
 syntax = "proto3";
 package rpc;
 
-import "events/store.proto";
 import "store/storefront.proto";
 import "store/item.proto";
+import "grpc/status.proto";
 
 option go_package = "github.com/ilhammhdd/kudaki-externals/grpc";
 
-service Store {
-  rpc AddStorefrontItem(event.AddStorefrontItemRequested)
-      returns (event.StorefrontItemAdded);
-  rpc DeleteStorefrontItem (event.DeleteStorefrontItemRequested) returns (event.StorefrontItemDeleted);
-  rpc UpdateStorefrontItem (event.UpdateStorefrontItemRequested) returns (event.StorefrontItemUpdated);
-}
+service StoreRepo {
+  rpc AddStorefront (entities.store.Storefront) returns (rpc.Status);
+  rpc UpdateStorefront (entities.store.Storefront) returns (rpc.Status);
+  rpc DeleteStorefront (entities.store.Storefront) returns (rpc.Status);
 
-service Items {
-  rpc RetrieveItems (event.RetrieveItemsRequested) returns (event.ItemsRetrieved);
-}
-
-service StoreManagement {
-  rpc AddStorefront (entities.store.Storefront) returns (entities.store.Storefront);
-  rpc UpdateStorefront (entities.store.Storefront) returns (entities.store.Storefront);
-  rpc DeleteStorefront (entities.store.Storefront) returns (entities.store.Storefront);
-
-  rpc AddItem (entities.store.Item) returns (entities.store.Item);
-  rpc UpdateItem (entities.store.Item) returns (entities.store.Item);
-  rpc DeleteItem (entities.store.Item) returns (entities.store.Item);
+  rpc AddItem (entities.store.Item) returns (rpc.Status);
+  rpc UpdateItem (entities.store.Item) returns (rpc.Status);
+  rpc DeleteItem (entities.store.Item) returns (rpc.Status);
 }
