@@ -55,3 +55,9 @@ service UnverifiedUserRepo {
   rpc UpdateUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
   rpc DeleteUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
 }
+
+service ResetPasswordRepo {
+  rpc AddResetPassword (entities.user.ResetPassword) returns (rpc.Status);
+  rpc UpdateResetPassword (entities.user.ResetPassword) returns (rpc.Status);
+  rpc DeleteResetPassword (entities.user.ResetPassword) returns (rpc.Status); 
+}
