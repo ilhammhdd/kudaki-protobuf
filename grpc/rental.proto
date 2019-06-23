@@ -12,12 +12,16 @@ service RentalRepo {
   rpc AddCart (entities.rental.Cart) returns (rpc.Status);
   rpc UpdateCart (entities.rental.Cart) returns (rpc.Status);
   rpc DeleteCart (entities.rental.Cart) returns (rpc.Status);
+}
 
-  rpc AddCheckout (entities.rental.Checkout) returns (rpc.Status);
-  rpc UpdateCheckout (entities.rental.Checkout) returns (rpc.Status);
-  rpc DeleteCheckout (entities.rental.Checkout) returns (rpc.Status);
-
+service CartItemRepo {
   rpc AddCartItem (entities.rental.CartItem) returns (rpc.Status);
   rpc UpdateCartItem (entities.rental.CartItem) returns (rpc.Status);
   rpc DeleteCartItem (entities.rental.CartItem) returns (rpc.Status);
+}
+
+service Checkoutrepo {
+  rpc AddCheckout (entities.rental.Checkout) returns (rpc.Status);
+  rpc UpdateCheckout (entities.rental.Checkout) returns (rpc.Status);
+  rpc DeleteCheckout (entities.rental.Checkout) returns (rpc.Status);
 }

@@ -42,11 +42,15 @@ service UserRepo {
   rpc AddUser (entities.user.User) returns (rpc.Status);
   rpc UpdateUser (entities.user.User) returns (rpc.Status);
   rpc DeleteUser (entities.user.User) returns (rpc.Status);
+}
 
+service ProfileRepo {
   rpc AddProfile (entities.user.Profile) returns (rpc.Status);
   rpc UpdateProfile (entities.user.Profile) returns (rpc.Status);
   rpc DeleteProfile (entities.user.Profile) returns (rpc.Status);
+}
 
+service UnverifiedUser {
   rpc AddUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
   rpc UpdateUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
   rpc DeleteUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
