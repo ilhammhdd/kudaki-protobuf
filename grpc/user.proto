@@ -50,7 +50,7 @@ service ProfileRepo {
   rpc DeleteProfile (entities.user.Profile) returns (rpc.Status);
 }
 
-service UnverifiedUser {
+service UnverifiedUserRepo {
   rpc AddUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
   rpc UpdateUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
   rpc DeleteUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
