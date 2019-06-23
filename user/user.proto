@@ -28,7 +28,12 @@ message User {
 }
 
 message UnverifiedUser {
-  string uuid = 1;
-  entities.user.User user = 2;
+  entities.user.User user = 1;
+  uint64 created_at = 2;
+}
+
+message ResetPassword {
+  entities.user.User user = 1;
+  string token = 2;
   uint64 created_at = 3;
 }
