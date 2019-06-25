@@ -11,6 +11,7 @@ service StoreRepo {
   rpc AddStorefront (entities.store.Storefront) returns (rpc.Status);
   rpc UpdateStorefront (entities.store.Storefront) returns (rpc.Status);
   rpc DeleteStorefront (entities.store.Storefront) returns (rpc.Status);
+  rpc UpsetStorefront (entities.store.Storefront) returns (rpc.Status);
 }
 
 service ItemRepo {
