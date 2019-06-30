@@ -2,11 +2,9 @@ syntax = "proto3";
 package rpc;
 
 import "events/status.proto";
-import "user/user.proto";
-import "user/profile.proto";
-import "grpc/status.proto";
+import "aggregates/user/user.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-externals/grpc";
+option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/externals/grpc";
 
 message UserAuthenticationRequested {
   string uid = 1;
@@ -16,19 +14,19 @@ message UserAuthenticationRequested {
 message UserAuthenticated {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
+  aggregates.user.User user = 3;
 }
 
 message UserAuthorizationRequested {
   string uid = 1;
-  entities.user.Role role = 2;
+  aggregates.user.UserRole user_role = 2;
   string jwt = 3;
 }
 
 message UserAuthorized {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
+  aggregates.user.User user = 3;
 }
 
 service User {
@@ -36,27 +34,4 @@ service User {
       returns (UserAuthenticated);
   rpc UserAuthorization(UserAuthorizationRequested)
       returns (UserAuthorized);
-}
-
-service UserRepo {
-  rpc AddUser (entities.user.User) returns (rpc.Status);
-  rpc UpdateUser (entities.user.User) returns (rpc.Status);
-  rpc DeleteUser (entities.user.User) returns (rpc.Status);
-}
-
-service ProfileRepo {
-  rpc AddProfile (entities.user.Profile) returns (rpc.Status);
-  rpc UpdateProfile (entities.user.Profile) returns (rpc.Status);
-  rpc DeleteProfile (entities.user.Profile) returns (rpc.Status);
-}
-
-service UnverifiedUserRepo {
-  rpc AddUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
-  rpc DeleteUnverifiedUser (entities.user.UnverifiedUser) returns (rpc.Status);
-}
-
-service ResetPasswordRepo {
-  rpc AddResetPassword (entities.user.ResetPassword) returns (rpc.Status);
-  rpc UpdateResetPassword (entities.user.ResetPassword) returns (rpc.Status);
-  rpc DeleteResetPassword (entities.user.ResetPassword) returns (rpc.Status); 
 }

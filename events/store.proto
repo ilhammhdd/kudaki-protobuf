@@ -1,14 +1,19 @@
 syntax = "proto3";
 package event;
 
-import "store/item.proto"; 
+import "aggregates/store/item.proto";
 import "events/status.proto";
-import "user/user.proto";
-import "store/storefront.proto";
+import "aggregates/user/user.proto";
+import "aggregates/store/item_review.proto";
+import "aggregates/store/review_comment.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
 
-message AddStorefrontItemRequested {
+/* 
+  storefront service
+*/
+
+message AddStorefrontItem {
   string uid = 1;
   string name = 4;
   int32 amount = 5;
@@ -21,69 +26,71 @@ message AddStorefrontItemRequested {
 
 message StorefrontItemAdded {
   string uid = 1;
-  entities.store.Storefront storefront = 2;
-  entities.store.Item item = 3;
-  event.Status event_status = 4;
-  AddStorefrontItemRequested add_storefront_item_requested = 5;
-  entities.user.User user = 6;
+  aggregates.store.Item item = 2;
+  event.Status event_status = 3;
+  AddStorefrontItem add_storefront_item = 4;
+  aggregates.user.User requester = 5;
 }
 
-message DeleteStorefrontItemRequested {
+message DeleteStorefrontItem {
   string uid = 1;
   string item_uuid = 2;
-  string kudaki_token = 3;
+  string storefront_uuid = 3;
+  string kudaki_token = 4;
 }
 
 message StorefrontItemDeleted {
   string uid = 1;
-  entities.store.Item item = 2;
+  aggregates.store.Item item = 2;
   event.Status event_status = 3;
-  entities.store.Storefront storefront = 4;
-  entities.user.User user = 5;
-  DeleteStorefrontItemRequested delete_storefront_item_requested = 6;
+  aggregates.user.User requester = 4;
+  DeleteStorefrontItem delete_storefront_item = 5;
 }
 
-message UpdateStorefrontItemRequested {
+message UpdateStorefrontItem {
   string uid = 1;
   string kudaki_token = 2;
-  string uuid = 3;
-  string name = 4;
-  int32 amount = 5;
-  string unit = 6;
-  int32 price = 7;
-  string description = 8;
-  string photo = 9;
+  string item_uuid = 3;
+  string item_name = 4;
+  int32 item_amount = 5;
+  string item_unit = 6;
+  int32 item_price = 7;
+  string item_description = 8;
+  string item_photo = 9;
+  string storefront_uuid = 10;
 }
 
 message StorefrontItemUpdated {
   string uid = 1;
-  entities.store.Item item = 2;
-  entities.store.Storefront storefront = 3;
+  aggregates.store.Item item_before = 2;
+  aggregates.store.Item item_after = 3;
   event.Status event_status = 4;
-  entities.user.User user = 5;
-  UpdateStorefrontItemRequested update_storefront_item_requested = 6;
+  aggregates.user.User requester = 5;
+  UpdateStorefrontItem update_storefront_item = 6;
 }
 
-message RetrieveUsersStorefrontItemsRequested {
-  string uuid = 1;
+message RetrieveStorefrontItems {
+  string uid = 1;
   string kudaki_token = 2;
-  int32 offset = 3;
-  int32 limit = 4;
+  string storefront_uuid = 3; // if not set the items will be returned from authenticated user's storefront
+  int32 offset = 4;
+  int32 limit = 5;
+  bytes result_schema = 6;
 }
 
-message RetrieveUsersStorefrontItemRequested {
-  string uuid = 1;
-  string kudaki_token = 2;
-  string item_uuid = 3;
+message StorefrontItemsRetrieved {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  RetrieveStorefrontItems retrieve_storefront_items = 4;
+  bytes result = 5;
 }
 
-message RetrieveStorefrontItemsRequested {
-  string uuid = 1;
-  string kudaki_token = 2;
-  string storefront_uuid = 3;
-}
+/* 
+  item service
+*/
 
-message RetrieveItemsRequested {
+message RetrieveItems {
   string uid = 1;
   int32 offset = 2;
   int32 limit = 3;
@@ -94,26 +101,90 @@ message ItemsRetrieved {
   string uid = 1;
   int32 offset = 2;
   int32 limit = 3;
-  entities.user.User user = 4;
+  aggregates.user.User requester = 4;
   event.Status event_status = 5;
-  repeated entities.store.Item items = 6;
+  repeated aggregates.store.Item items = 6;
+  RetrieveItems retrieve_items = 7;
 }
 
-message RetrieveItemRequested {
-  string uuid = 1;
-  string item_uuid = 2;
-  string kudaki_token = 3;
-}
-
-message SearchItemsRequested {
-  string uuid = 1;
+message SearchItems {
+  string uid = 1;
   string kudaki_token = 2;
   string keyword = 3;
   int32 offset = 4;
   int32 limit = 5;
-  int32 amount = 6;
-  int32 price_from = 7;
-  int32 price_to = 8;
-  float rating_from = 9;
-  float rating_to = 10;
+}
+
+message ItemsSearched {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  repeated aggregates.store.Item items = 4;
+  SearchItems search_items = 5;
+}
+
+/* 
+  item review service
+*/
+
+message ReviewItem {
+  string uid = 1;
+  string kudaki_token = 2;
+  float rating = 3;
+  string review = 4;
+}
+
+message ItemReviewed {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  aggregates.store.ItemReview item_review = 4;
+  ReviewItem review_item = 5;
+}
+
+message RetrieveItemReviews {
+  string uid = 1;
+  string kudaki_token = 2;
+  string item_uuid = 3;
+  int32 offset = 4;
+  int32 limit = 5;
+}
+
+message ItemReviewsRetrieved {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  repeated aggregates.store.ItemReview item_reviews = 4;
+  RetrieveItemReviews retrieve_item_reviews = 5;
+}
+
+message CommentItemReview {
+  string uid = 1;
+  string kudaki_token = 2;
+  string comment = 3;
+  string item_review_uuid = 4;
+}
+
+message ItemReviewCommented {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  aggregates.store.ReviewComment review_comment = 4;
+  CommentItemReview comment_item_review = 5;
+}
+
+message RetrieveItemReviewComments {
+  string uid = 1;
+  string kudaki_token = 2;
+  string item_review_uuid = 3;
+  int32 offset = 4;
+  int32 limit = 5;
+}
+
+message ItemReviewCommentsRetrieved {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  repeated aggregates.store.ReviewComment review_comments = 4;
+  RetrieveItemReviewComments retrieve_item_review_comments = 5;
 }

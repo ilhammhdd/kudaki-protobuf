@@ -1,0 +1,16 @@
+syntax = "proto3";
+package aggregates.order;
+
+import "google/protobuf/timestamp.proto";
+import "aggregates/order/order.proto";
+
+option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/order";
+
+message ItemFeedback {
+    int64 id = 1;
+    string uuid = 2;
+    aggregates.order.Order order = 3;
+    double rating = 4;
+    string description = 5;
+    google.protobuf.Timestamp created_at = 6;
+}

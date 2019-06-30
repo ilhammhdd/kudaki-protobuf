@@ -3,7 +3,7 @@ package event;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
 
 message Status {
   repeated string messages = 3;

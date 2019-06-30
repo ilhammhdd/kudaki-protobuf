@@ -2,19 +2,23 @@ syntax = "proto3";
 package event;
 
 import "events/status.proto";
-import "user/user.proto";
-import "user/profile.proto";
+import "aggregates/user/user.proto";
+import "aggregates/user/profile.proto";
+import "aggregates/user/address.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-entities/events";
+option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
 
+/* 
+  user auth service
+*/
 message Signedup {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.Profile profile = 3;
-  SignupRequested signup_requested = 4;
+  aggregates.user.Profile profile = 3;
+  Signup signup = 4;
 }
 
-message SignupRequested {
+message Signup {
   string uid = 1;
   string full_name = 2;
   string phone_number = 3;
@@ -27,11 +31,11 @@ message SignupRequested {
 message UserVerificationEmailSent {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
+  aggregates.user.User user = 3;
   string verify_token = 4;
 }
 
-message VerifyUserRequested {
+message VerifyUser {
   string uid = 1;
   string verify_token = 2;
 }
@@ -39,11 +43,11 @@ message VerifyUserRequested {
 message UserVerified {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
-  VerifyUserRequested verify_user_requested = 4;
+  aggregates.user.User user = 3;
+  VerifyUser verify_user = 4;
 }
 
-message LoginRequested {
+message Login {
   string uid = 1;
   string email = 2;
   string password = 3;
@@ -52,11 +56,11 @@ message LoginRequested {
 message Loggedin {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
-  LoginRequested login_requested = 4;
+  aggregates.user.User user = 3;
+  Login login = 4;
 }
 
-message ChangePasswordRequested {
+message ChangePassword{
   string uid = 1;
   string kudaki_token = 2;
   string new_password = 3;
@@ -66,24 +70,24 @@ message ChangePasswordRequested {
 message PasswordChanged {
   string uid = 1;
   event.Status event_status = 2;
-  entities.user.User user = 3;
-  ChangePasswordRequested change_password_requested = 4;
+  aggregates.user.User user = 3;
+  ChangePassword change_password = 4;
 }
 
-message SendResetPasswordEmailRequested {
+message SendResetPasswordEmail {
   string uid = 1;
   string email = 2;
 }
 
 message ResetPasswordEmailSent {
   string uid = 1;
-  entities.user.User user = 2;
+  aggregates.user.User user = 2;
   string rest_token = 3;
   event.Status event_status = 4;
-  SendResetPasswordEmailRequested sendReset_password_email_requested = 5;
+  SendResetPasswordEmail sendReset_password_email = 5;
 }
 
-message ResetPasswordRequested {
+message ResetPassword {
   string uid = 1;
   string reset_token = 2;
   string new_password = 3;
@@ -91,7 +95,78 @@ message ResetPasswordRequested {
 
 message PasswordReseted {
   string uid = 1;
-  entities.user.User user = 2;
+  aggregates.user.User user = 2;
   event.Status event_status = 3;
-  ResetPasswordRequested reset_password_requested = 4;
+  ResetPassword reset_password = 4;
+}
+
+
+/* 
+  user info service
+*/
+message AddAddress {
+  string uid = 1;
+  string kudaki_token = 2;
+  string receiver_name = 3;
+  string full_address = 4;
+  string receiver_phone_number = 5;
+  float latitude = 6;
+  float longitude = 7;
+  string zip_code = 8;
+}
+
+message AddressAdded {
+  string uid = 1;
+  aggregates.user.User user = 2;
+  event.Status event_status = 3;
+  aggregates.user.User user_uuid = 4;
+  aggregates.user.Address users_address = 5;
+}
+
+message UpdateAddress {
+  string uid = 1;
+  string kudaki_token = 2;
+  string full_address = 3;
+  string receiver_name = 4;
+  string receiver_phone_number = 5;
+  string zip_code = 6;
+  float latitude = 7;
+  float longitude = 8;
+}
+
+message AddressUpdated {
+  string uid = 1;
+  aggregates.user.User user = 2;
+  event.Status event_status = 3;
+  aggregates.user.Address address_before = 4;
+  aggregates.user.Address address_after = 5;
+  UpdateAddress update_address = 6;
+}
+
+message UpdateProfile {
+  string uid = 1;
+  string photo = 2;
+  string full_name = 3;
+}
+
+message ProfileUpdated {
+  string uid = 1;
+  aggregates.user.User user = 2;
+  event.Status event_status = 3;
+  aggregates.user.Profile profile_before = 4;
+  aggregates.user.Profile profile_after = 5;
+  UpdateProfile update_profile = 6;
+}
+
+message RetrieveAddresses {
+  string uid = 1;
+  string kudaki_token = 2;
+  bytes result_schema = 3;
+}
+
+message AddressesRetrieved {
+  string uid = 1;
+  aggregates.user.User user = 2;
+  event.Status event_status = 3;
+  bytes result = 4;
 }
