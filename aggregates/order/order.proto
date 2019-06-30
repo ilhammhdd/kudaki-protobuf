@@ -3,8 +3,6 @@ package aggregates.order;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/order";
-
 enum OrderStatus {
     PENDING = 0;
     APPROVED = 1;

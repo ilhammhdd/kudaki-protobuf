@@ -4,8 +4,6 @@ package rpc;
 import "events/status.proto";
 import "aggregates/user/user.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/externals/grpc";
-
 message UserAuthenticationRequested {
   string uid = 1;
   string jwt = 2;

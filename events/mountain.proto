@@ -7,11 +7,20 @@ import "aggregates/mountain/recommended_gear_item.proto";
 import "events/status.proto";
 import "aggregates/user/user.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
-
 /* 
-  recommendation service
+  recommendation service commands
 */
+enum RecommendationServiceCommandTopic {
+  ADD_RECOMMENDED_GEAR = 0;
+  DELETE_RECOMMENDED_GEAR = 1;
+  RETRIEVE_RECOMMENDED_GEARS = 2;
+  RETRIEVE_RECOMMENDED_GEAR_ITEMS = 3;
+  ADD_RECOMMENDED_GEAR_ITEM = 4;
+  DELETE_RECOMMENDED_GEAR_ITEM = 5;
+  UPVOTE_RECOMMENDED_GEAR = 6;
+  DOWNVOTE_RECOMMENDED_GEAR = 7;
+}
+
 message DataRecommendedGearItems {
   string item_type = 1;
   int32 total = 2;
@@ -24,27 +33,10 @@ message AddRecommendedGear {
   repeated DataRecommendedGearItems recommended_gear_items = 4;
 }
 
-message RecommendedGearAdded {
-  string uid = 1;
-  aggregates.user.User requester = 2;
-  event.Status event_status = 3;
-  AddRecommendedGear add_recommended_gear = 4;
-  aggregates.mountain.RecommendedGear recommended_gear = 5;
-  repeated aggregates.mountain.RecommendedGearItem recommended_gear_items = 6;
-}
-
 message DeleteRecommendedGear {
   string uid = 1;
   string kudaki_token = 2;
   string recommended_gear_uuid = 3;
-}
-
-message RecommendedGearDeleted {
-  string uid = 1;
-  aggregates.user.User requester = 2;
-  event.Status event_status = 3;
-  aggregates.mountain.RecommendedGear recommended_gear = 4;
-  DeleteRecommendedGear delete_recommended_gear = 5;
 }
 
 message RetrieveRecommendedGears {
@@ -56,14 +48,6 @@ message RetrieveRecommendedGears {
   bytes result_schema = 6;
 }
 
-message RecommendedGearsRetrieved {
-  string uid = 1;
-  aggregates.user.User requester = 2;
-  event.Status event_status = 3; 
-  RetrieveRecommendedGears retrieve_recommended_gears = 4;
-  bytes result = 5;
-}
-
 message RetrieveRecommendedGearItems {
   string uid = 1;
   string kudaki_token = 2;
@@ -71,14 +55,6 @@ message RetrieveRecommendedGearItems {
   int32 offset = 4;
   int32 limit = 5;
   bytes result_schema = 6;
-}
-
-message RecommendedGearItemsRetrieved {
-  string uid = 1;
-  aggregates.user.User requester = 2;
-  event.Status event_status = 3; 
-  RetrieveRecommendedGearItems retrieve_recommended_gear_items = 4;
-  bytes result = 5;
 }
 
 message AddRecommendedGearItem {
@@ -107,6 +83,50 @@ message DownvoteRecommendedGear {
   string recommended_gear_uuid = 3;
 }
 
+/* 
+  recommendation service events
+*/
+enum RecommendationServiceEventTopic {
+  RECOMMENDED_GEAR_ADDED = 0;
+  RECOMMENDED_GEAR_DELETED = 1;
+  RECOMMENDED_GEARS_RETRIEVED = 2;
+  RECOMMENDED_GEAR_ITEMS_RETRIEVED = 3;
+  RECOMMENDED_GEAR_UPDATED = 4;
+}
+
+message RecommendedGearAdded {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  AddRecommendedGear add_recommended_gear = 4;
+  aggregates.mountain.RecommendedGear recommended_gear = 5;
+  repeated aggregates.mountain.RecommendedGearItem recommended_gear_items = 6;
+}
+
+message RecommendedGearDeleted {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  aggregates.mountain.RecommendedGear recommended_gear = 4;
+  DeleteRecommendedGear delete_recommended_gear = 5;
+}
+
+message RecommendedGearsRetrieved {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3; 
+  RetrieveRecommendedGears retrieve_recommended_gears = 4;
+  bytes result = 5;
+}
+
+message RecommendedGearItemsRetrieved {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3; 
+  RetrieveRecommendedGearItems retrieve_recommended_gear_items = 4;
+  bytes result = 5;
+}
+
 message RecommendedGearUpdated {
   string uid = 1;
   event.Status event_status = 3;
@@ -115,8 +135,16 @@ message RecommendedGearUpdated {
 }
 
 /* 
-  mountain service
+  mountain service commands
 */
+enum MountainServiceCommandTopic {
+  ADD_MOUNTAIN = 0;
+  UPDATE_MOUNTAIN = 1;
+  DELETE_MOUNTAIN = 2;
+  RETRIEVE_MOUNTAINS = 3;
+  SEARCH_MOUNTAINS = 4;
+}
+
 message AddMountain {
   string uid = 1;
   string kudaki_token = 2;
@@ -126,14 +154,6 @@ message AddMountain {
   double longitude = 6;
   double difficulty = 7;
   string description = 8;
-}
-
-message MountainAdded {
-  string uid = 1;
-  aggregates.user.User requester = 2;
-  event.Status event_status = 3; 
-  AddMountain add_mountain = 4;
-  aggregates.mountain.Mountain mountain = 5; 
 }
 
 message UpdateMountain {
@@ -148,6 +168,46 @@ message UpdateMountain {
   string mountain_uuid = 9;
 }
 
+message DeleteMountain {
+  string uid = 1;
+  string kudaki_token = 2; 
+  string mountain_uuid = 3;
+}
+
+message RetrieveMountains {
+  string uid = 1;
+  string kudaki_token = 2;
+  int32 offset = 3;
+  int32 limit = 4; 
+}
+
+message SearchMountain {
+  string uid = 1;
+  string kudaki_token = 2;
+  string keyword = 3;
+  int32 offset = 4;
+  int32 limit = 5;
+}
+
+/* 
+  mountain service events
+*/
+enum MountainServiceEventTopic {
+  MOUNTAIN_ADDED = 0;
+  MOUNTAIN_UPDATED = 1;
+  MOUNTAIN_DELETED = 2;
+  MOUNTAINS_RETRIEVED = 3;
+  MOUNTAINS_SEARCHED = 4;
+}
+
+message MountainAdded {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3; 
+  AddMountain add_mountain = 4;
+  aggregates.mountain.Mountain mountain = 5; 
+}
+
 message MountainUpdated {
   string uid = 1;
   aggregates.user.User requester = 2;
@@ -155,12 +215,6 @@ message MountainUpdated {
   UpdateMountain update_mountain = 4;
   aggregates.mountain.Mountain mountain_before = 5; 
   aggregates.mountain.Mountain mountain_after = 6; 
-}
-
-message DeleteMountain {
-  string uid = 1;
-  string kudaki_token = 2; 
-  string mountain_uuid = 3;
 }
 
 message MountainDeleted {
@@ -171,27 +225,12 @@ message MountainDeleted {
   aggregates.mountain.Mountain mountain = 5;
 }
 
-message RetrieveMountains {
-  string uid = 1;
-  string kudaki_token = 2;
-  int32 offset = 3;
-  int32 limit = 4; 
-}
-
 message MountainsRetrieved {
   string uid = 1;
   aggregates.user.User requester = 2;
   event.Status event_status = 3; 
   RetrieveMountains retrieve_mountains = 4;
   repeated aggregates.mountain.Mountain mountains = 5;
-}
-
-message SearchMountain {
-  string uid = 1;
-  string kudaki_token = 2;
-  string keyword = 3;
-  int32 offset = 4;
-  int32 limit = 5;
 }
 
 message MountainSearched {

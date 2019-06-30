@@ -7,7 +7,18 @@ import "aggregates/user/user.proto";
 import "aggregates/order/owner_feedback.proto";
 import "aggregates/order/item_feedback.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
+/* 
+  order service commands
+*/
+enum OrderServiceCommandTopic {
+    RETRIEVE_OWNERS_ORDER_HISTORIES = 0;
+    RETRIEVE_TENANTS_ORDER_HISTORIES = 1;
+    OWNER_REVIEW_TENANT = 2;
+    TENANT_REVIEW_OWNER = 3;
+    TENANT_REVIEW_ITEMS = 4;
+    APPROVE_ORDER = 5;
+    DISAPPROVE_ORDER = 6;
+  }
 
 message RetrieveOwnersOrderHistories {
     string uid = 1;
@@ -16,13 +27,6 @@ message RetrieveOwnersOrderHistories {
     int32 limit = 4;
     aggregates.order.OrderStatus order_status = 5;
     bytes result_schema = 6;
-}
-
-message OwnersOrderHistoriesRetrieved{
-    string uid = 1;
-    event.Status event_status = 2;
-    RetrieveOwnersOrderHistories retrieve_owners_order_histories = 3;
-    bytes result = 4;
 }
 
 message RetrieveTenantsOrderHistories {
@@ -34,19 +38,65 @@ message RetrieveTenantsOrderHistories {
     bytes result_schema = 6;
 }
 
+message OwnerReviewTenant {
+    string uid = 1;
+    string kudaki_token = 2;
+    float rating = 3;
+    string order_uuid = 4;
+}
+
+message TenantReviewOwner {
+    string uid = 1;
+    string kudaki_token = 2;
+    float rating = 3;
+    string order_uuid = 4;
+}
+
+message TenantReviewItems {
+    string uid = 1;
+    string kudaki_token = 2;
+    float rating = 3;
+    string review = 4;
+}
+
+message ApproveOrder {
+    string uid = 1;
+    string kudaki_token = 2;
+    string order_uuid = 3;
+}
+
+message DisapproveOrder {
+    string uid = 1;
+    string kudaki_token = 2;
+    string order_uuid = 3;
+}
+
+/* 
+  order service events
+*/
+enum OrderServiceEventTopic {
+    OWNERS_ORDER_HISTORIES_RETRIEVED = 0;
+    TENANTS_ORDER_HISTORIES_RETRIEVED = 1;
+    OWNER_REVIEWED_TENANT = 2;
+    TENANT_REVIEWED_OWNER = 3;
+    TENANT_REVIEWED_ITEMS = 4;
+    ORDER_APPROVED = 5;
+    ORDER_DISAPPROVED = 6;
+  }
+
+message OwnersOrderHistoriesRetrieved{
+    string uid = 1;
+    event.Status event_status = 2;
+    RetrieveOwnersOrderHistories retrieve_owners_order_histories = 3;
+    bytes result = 4;
+}
+
 message TenantOrderHistoriesRetrieved{
     string uid = 1;
     aggregates.user.User tenant = 2;
     event.Status event_status = 3;
     RetrieveTenantsOrderHistories retrieve_tenants_order_histories = 5;
     bytes result = 4;
-}
-
-message OwnerReviewTenant {
-    string uid = 1;
-    string kudaki_token = 2;
-    float rating = 3;
-    string order_uuid = 4;
 }
 
 message OwnerReviewedTenant {
@@ -58,13 +108,6 @@ message OwnerReviewedTenant {
     OwnerReviewTenant owner_review_tenant = 6;
 }
 
-message TenantReviewOwner {
-    string uid = 1;
-    string kudaki_token = 2;
-    float rating = 3;
-    string order_uuid = 4;
-}
-
 message TenantReviewedOwner {
     string uid = 1;
     aggregates.user.User tenant = 2;
@@ -72,13 +115,6 @@ message TenantReviewedOwner {
     event.Status event_status = 4;
     aggregates.order.OwnerFeedback owner_feedback = 5;
     TenantReviewOwner tenant_review_owner = 6;
-}
-
-message TenantReviewItems {
-    string uid = 1;
-    string kudaki_token = 2;
-    float rating = 3;
-    string review = 4;
 }
 
 message TenantReviewedItems{
@@ -89,24 +125,12 @@ message TenantReviewedItems{
     TenantReviewItems tenant_review_items = 5;
 }
 
-message ApproveOrder {
-    string uid = 1;
-    string kudaki_token = 2;
-    string order_uuid = 3;
-}
-
 message OrderApproved {
     string uid = 1;
     aggregates.user.User owner = 2;
     event.Status event_status = 3;
     aggregates.order.Order order = 4;
     ApproveOrder approve_order = 5;
-}
-
-message DisapproveOrder {
-    string uid = 1;
-    string kudaki_token = 2;
-    string order_uuid = 3;
 }
 
 message OrderDisapproved {

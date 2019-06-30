@@ -3,8 +3,6 @@ package aggregates.rental;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/rental";
-
 message Cart {
     int64 id = 1;
     string uuid = 2;

@@ -6,16 +6,16 @@ import "aggregates/user/user.proto";
 import "aggregates/user/profile.proto";
 import "aggregates/user/address.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
-
 /* 
-  user auth service
+  user auth service commands
 */
-message Signedup {
-  string uid = 1;
-  event.Status event_status = 2;
-  aggregates.user.Profile profile = 3;
-  Signup signup = 4;
+enum UserAuthServiceCommandTopic {
+  SIGN_UP = 0;
+  VERIFY_USER = 1;
+  LOGIN = 2;
+  CHANGE_PASSWORD = 3;
+  SEND_RESET_PASSWORD_EMAIL = 4;
+  RESET_PASSWORD = 5;
 }
 
 message Signup {
@@ -28,36 +28,15 @@ message Signup {
   string photo = 7;
 }
 
-message UserVerificationEmailSent {
-  string uid = 1;
-  event.Status event_status = 2;
-  aggregates.user.User user = 3;
-  string verify_token = 4;
-}
-
 message VerifyUser {
   string uid = 1;
   string verify_token = 2;
-}
-
-message UserVerified {
-  string uid = 1;
-  event.Status event_status = 2;
-  aggregates.user.User user = 3;
-  VerifyUser verify_user = 4;
 }
 
 message Login {
   string uid = 1;
   string email = 2;
   string password = 3;
-}
-
-message Loggedin {
-  string uid = 1;
-  event.Status event_status = 2;
-  aggregates.user.User user = 3;
-  Login login = 4;
 }
 
 message ChangePassword{
@@ -67,16 +46,56 @@ message ChangePassword{
   string old_password = 4;
 }
 
+message SendResetPasswordEmail {
+  string uid = 1;
+  string email = 2;
+}
+
+message ResetPassword {
+  string uid = 1;
+  string reset_token = 2;
+  string new_password = 3;
+}
+
+/* 
+  user auth service events
+*/
+enum UserAuthServiceEventTopic {
+  SIGNED_UP = 0;
+  USER_VERIFIED = 1;
+  LOGGEDIN = 2;
+  PASSWORD_CHANGED = 3;
+  RESET_PASSWORD_EMAIL_SENT = 4;
+  PASSWORD_RESETED = 5;
+  USER_VERIFICATION_EMAIL_SENT = 6;
+}
+
+message Signedup {
+  string uid = 1;
+  event.Status event_status = 2;
+  aggregates.user.Profile profile = 3;
+  Signup signup = 4;
+}
+
+message UserVerified {
+  string uid = 1;
+  event.Status event_status = 2;
+  aggregates.user.User user = 3;
+  VerifyUser verify_user = 4;
+}
+
+message Loggedin {
+  string uid = 1;
+  event.Status event_status = 2;
+  aggregates.user.User user = 3;
+  Login login = 4;
+}
+
 message PasswordChanged {
   string uid = 1;
   event.Status event_status = 2;
   aggregates.user.User user = 3;
   ChangePassword change_password = 4;
-}
-
-message SendResetPasswordEmail {
-  string uid = 1;
-  string email = 2;
 }
 
 message ResetPasswordEmailSent {
@@ -87,12 +106,6 @@ message ResetPasswordEmailSent {
   SendResetPasswordEmail sendReset_password_email = 5;
 }
 
-message ResetPassword {
-  string uid = 1;
-  string reset_token = 2;
-  string new_password = 3;
-}
-
 message PasswordReseted {
   string uid = 1;
   aggregates.user.User user = 2;
@@ -100,10 +113,23 @@ message PasswordReseted {
   ResetPassword reset_password = 4;
 }
 
+message UserVerificationEmailSent {
+  string uid = 1;
+  event.Status event_status = 2;
+  aggregates.user.User user = 3;
+  string verify_token = 4;
+}
 
 /* 
-  user info service
+  user info service commands
 */
+enum UserInfoServiceCommandTopic {
+  ADD_ADDRESS = 0;
+  UPDATE_ADDRESS = 1;
+  UPDATE_PROFILE = 2;
+  RETRIEVE_ADDRESSES = 3;
+}
+
 message AddAddress {
   string uid = 1;
   string kudaki_token = 2;
@@ -113,14 +139,6 @@ message AddAddress {
   float latitude = 6;
   float longitude = 7;
   string zip_code = 8;
-}
-
-message AddressAdded {
-  string uid = 1;
-  aggregates.user.User user = 2;
-  event.Status event_status = 3;
-  aggregates.user.User user_uuid = 4;
-  aggregates.user.Address users_address = 5;
 }
 
 message UpdateAddress {
@@ -134,6 +152,36 @@ message UpdateAddress {
   float longitude = 8;
 }
 
+message UpdateProfile {
+  string uid = 1;
+  string photo = 2;
+  string full_name = 3;
+}
+
+message RetrieveAddresses {
+  string uid = 1;
+  string kudaki_token = 2;
+  bytes result_schema = 3;
+}
+
+/* 
+  user info service events
+*/
+enum UserInfoServiceEventTopic {
+  ADDRESS_ADDED = 0;
+  ADDRESS_UPDATED = 1;
+  PROFILE_UPDATED = 2;
+  ADDRESSES_RETRIEVED = 3;
+}
+
+message AddressAdded {
+  string uid = 1;
+  aggregates.user.User user = 2;
+  event.Status event_status = 3;
+  aggregates.user.User user_uuid = 4;
+  aggregates.user.Address users_address = 5;
+}
+
 message AddressUpdated {
   string uid = 1;
   aggregates.user.User user = 2;
@@ -143,12 +191,6 @@ message AddressUpdated {
   UpdateAddress update_address = 6;
 }
 
-message UpdateProfile {
-  string uid = 1;
-  string photo = 2;
-  string full_name = 3;
-}
-
 message ProfileUpdated {
   string uid = 1;
   aggregates.user.User user = 2;
@@ -156,12 +198,6 @@ message ProfileUpdated {
   aggregates.user.Profile profile_before = 4;
   aggregates.user.Profile profile_after = 5;
   UpdateProfile update_profile = 6;
-}
-
-message RetrieveAddresses {
-  string uid = 1;
-  string kudaki_token = 2;
-  bytes result_schema = 3;
 }
 
 message AddressesRetrieved {

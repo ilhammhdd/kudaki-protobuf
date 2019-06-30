@@ -4,8 +4,6 @@ package aggregates.user;
 import "aggregates/user/user.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/user";
-
 message UnverifiedUser {
     int64 id = 1;
     aggregates.user.User user = 2;

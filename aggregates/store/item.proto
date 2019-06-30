@@ -4,8 +4,6 @@ package aggregates.store;
 import "google/protobuf/timestamp.proto";
 import "aggregates/store/storefront.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/store";
-
 enum PriceDuration{
     DAY = 0;
     WEEK = 1;

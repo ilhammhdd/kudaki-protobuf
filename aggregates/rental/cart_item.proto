@@ -4,8 +4,6 @@ package aggregates.rental;
 import "google/protobuf/timestamp.proto";
 import "aggregates/rental/cart.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/rental";
-
 message CartItem {
     int64 id = 1;
     string uuid = 2;

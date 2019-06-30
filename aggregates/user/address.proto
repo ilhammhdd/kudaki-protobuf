@@ -4,8 +4,6 @@ package aggregates.user;
 import "aggregates/user/profile.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/user";
-
 message Address {
     int64 id = 1;
     string uuid = 2;

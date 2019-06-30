@@ -4,8 +4,6 @@ package aggregates.mountain;
 import "aggregates/mountain/mountain.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/mountain";
-
 message MountainFile {
     int64 id = 1;
     aggregates.mountain.Mountain mountain = 2;

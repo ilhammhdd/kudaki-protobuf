@@ -7,7 +7,17 @@ import "aggregates/rental/cart_item.proto";
 import "aggregates/user/user.proto";
 import "aggregates/rental/returnment_confirmation.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/events";
+/* 
+  rental service command
+*/
+enum RentalServiceCommandTopic{
+    ADD_CART_ITEM = 0;
+    RETRIEVE_CART_ITEMS = 1;
+    DELETE_CART_ITEM = 2;
+    UPDATE_CART_ITEM = 3;
+    TENANT_CONFIRM_RETURNMENT = 4;
+    OWNER_CONFIRM_RETURNMENT = 5;
+  }
 
 message AddCartItem {
     string uid = 1;
@@ -15,13 +25,6 @@ message AddCartItem {
     string item_uuid = 3;
     int32 item_amount = 4;
     string kudaki_token = 5;
-}
-
-message CartItemAdded {
-    string uid = 1;
-    aggregates.rental.CartItem cart_item = 2;
-    event.Status event_status = 4;
-    AddCartItem add_cart_item = 5;
 }
 
 message RetrieveCartItems {
@@ -33,6 +36,50 @@ message RetrieveCartItems {
     bytes result_schema = 6;
 }
 
+message DeleteCartItem {
+    string uid = 1;
+    string kudaki_token = 2;
+    string cart_item_uuid = 3;
+}
+
+message UpdateCartItem {
+    string uid = 1;
+    string kudaki_token = 2;
+    int32 total_item = 3;
+    string cart_item_uuid = 4;
+}
+
+message TenantConfirmReturnment {
+    string uid = 1;
+    string kudaki_token = 2; // tenant user uuid derived from here
+    string order_uuid = 3;
+}
+
+message OwnerConfirmReturnment {
+    string uid = 1;
+    string kudaki_token = 2; // owner user uuid derived from here
+    string order_uuid = 3;
+}
+
+/* 
+  rental service events
+*/
+enum RentalServiceEventTopic{
+    CART_ITEM_ADDED = 0;
+    CART_ITEMS_RETRIEVED = 1;
+    CART_ITEM_DELETED = 2;
+    CART_ITEM_UPDATED =  3;
+    TENANT_CONFIRMED_RETURNMENT = 4;
+    OWNER_CONFIRMED_RETURNMENT = 5;
+  }
+
+message CartItemAdded {
+    string uid = 1;
+    aggregates.rental.CartItem cart_item = 2;
+    event.Status event_status = 4;
+    AddCartItem add_cart_item = 5;
+}
+
 message CartItemsRetrieved {
     string uid = 1;
     aggregates.user.User requester = 2;
@@ -42,25 +89,12 @@ message CartItemsRetrieved {
     bytes result = 7;
 }
 
-message DeleteCartItem {
-    string uid = 1;
-    string kudaki_token = 2;
-    string cart_item_uuid = 3;
-}
-
 message CartItemDeleted {
     string uid = 1;
     aggregates.user.User user = 2;
     event.Status event_status = 3;
     DeleteCartItem delete_cart_item = 4;
     aggregates.rental.CartItem cart_item = 5;
-}
-
-message UpdateCartItem {
-    string uid = 1;
-    string kudaki_token = 2;
-    int32 total_item = 3;
-    string cart_item_uuid = 4;
 }
 
 message CartItemUpdated {
@@ -72,24 +106,12 @@ message CartItemUpdated {
     aggregates.rental.CartItem updated_cart_item = 6;
 }
 
-message TenantConfirmReturnment {
-    string uid = 1;
-    string kudaki_token = 2; // tenant user uuid derived from here
-    string order_uuid = 3;
-}
-
 message TenantConfirmedReturnment {
     string uid = 1;
     aggregates.user.User tenant = 2;
     event.Status event_status = 3;
     aggregates.rental.ReturnmentConfirmation returnment_confirmation = 4;
     TenantConfirmReturnment tenant_confirm_returnment = 5;
-}
-
-message OwnerConfirmReturnment {
-    string uid = 1;
-    string kudaki_token = 2; // owner user uuid derived from here
-    string order_uuid = 3;
 }
 
 message OwnerConfirmedReturnment {

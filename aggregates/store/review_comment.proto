@@ -4,8 +4,6 @@ package aggregates.store;
 import "google/protobuf/timestamp.proto";
 import "aggregates/store/item_review.proto";
 
-option go_package = "github.com/ilhammhdd/kudaki-user-auth-service/entities/aggregates/store";
-
 message ReviewComment {
     int64 id = 1;
     string uuid = 2;
