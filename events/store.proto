@@ -6,6 +6,7 @@ import "events/status.proto";
 import "aggregates/user/user.proto";
 import "aggregates/store/item_review.proto";
 import "aggregates/store/review_comment.proto";
+import "aggregates/store/storefront.proto";
 
 /* 
   storefront service commands
@@ -26,12 +27,18 @@ message AddStorefrontItem {
   string description = 8;
   string photo = 9;
   string kudaki_token = 10;
+  aggregates.store.PriceDuration price_duration = 11;
+  int32 length = 12;
+  int32 width = 13;
+  int32 height = 14;
+  aggregates.store.UnitofMeasurement unit_of_measurement = 15;
+  string color = 16;
 }
 
 message DeleteStorefrontItem {
   string uid = 1;
   string item_uuid = 2;
-  string storefront_uuid = 3;
+  // string storefront_uuid = 3;
   string kudaki_token = 4;
 }
 
@@ -39,13 +46,18 @@ message UpdateStorefrontItem {
   string uid = 1;
   string kudaki_token = 2;
   string item_uuid = 3;
-  string item_name = 4;
-  int32 item_amount = 5;
-  string item_unit = 6;
-  int32 item_price = 7;
-  string item_description = 8;
-  string item_photo = 9;
-  string storefront_uuid = 10;
+  string name = 4;
+  int32 amount = 5;
+  string unit = 6;
+  int32 price = 7;
+  string description = 8;
+  string photo = 9;
+  aggregates.store.PriceDuration price_duration = 10;
+  int32 length = 11;
+  int32 width = 12;
+  int32 height = 13;
+  aggregates.store.UnitofMeasurement unit_of_measurement = 14;
+  string color = 15;
 }
 
 message RetrieveStorefrontItems {
@@ -73,6 +85,7 @@ message StorefrontItemAdded {
   event.Status event_status = 3;
   AddStorefrontItem add_storefront_item = 4;
   aggregates.user.User requester = 5;
+  aggregates.store.Storefront storefront = 6;
 }
 
 message StorefrontItemDeleted {
@@ -137,15 +150,17 @@ message ItemsRetrieved {
   int32 limit = 3;
   aggregates.user.User requester = 4;
   event.Status event_status = 5;
-  repeated aggregates.store.Item items = 6;
+  bytes result = 6;
   RetrieveItems retrieve_items = 7;
+  repeated aggregates.store.Item items = 8;
 }
 
 message ItemsSearched {
   string uid = 1;
   aggregates.user.User requester = 2;
   event.Status event_status = 3;
-  repeated aggregates.store.Item items = 4;
+  // repeated aggregates.store.Item items = 4;
+  bytes result = 4;
   SearchItems search_items = 5;
 }
 
@@ -153,7 +168,7 @@ message ItemsSearched {
   item review service commands
 */
 enum ItemReviewServiceCommandTopic {
-  REVIEW_ITEMS = 0;
+  REVIEW_ITEM = 0;
   RETRIEVE_ITEM_REVIEWS = 1;
   COMMENT_ITEM_REVIEW = 2;
   RETRIEVE_ITEM_REVIEW_COMMENTS = 3;
@@ -163,7 +178,8 @@ message ReviewItem {
   string uid = 1;
   string kudaki_token = 2;
   float rating = 3;
-  string review = 4;
+  string item_uuid = 4;
+  string review = 5;
 }
 
 message RetrieveItemReviews {
@@ -193,7 +209,7 @@ message RetrieveItemReviewComments {
   item review service events
 */
 enum ItemReviewServiceEventTopic {
-  ITEMS_REVIEWED = 0;
+  ITEM_REVIEWED = 0;
   ITEM_REVIEWS_RETRIEVED = 1;
   ITEM_REVIEW_COMMENTED = 2;
   ITEM_REVIEW_COMMENTS_RETRIEVED = 3;
@@ -211,8 +227,9 @@ message ItemReviewsRetrieved {
   string uid = 1;
   aggregates.user.User requester = 2;
   event.Status event_status = 3;
-  repeated aggregates.store.ItemReview item_reviews = 4;
+  bytes result = 4;
   RetrieveItemReviews retrieve_item_reviews = 5;
+  repeated aggregates.store.ItemReview item_reviews = 6;
 }
 
 message ItemReviewCommented {
@@ -229,4 +246,5 @@ message ItemReviewCommentsRetrieved {
   event.Status event_status = 3;
   repeated aggregates.store.ReviewComment review_comments = 4;
   RetrieveItemReviewComments retrieve_item_review_comments = 5;
+  bytes result = 6;
 }

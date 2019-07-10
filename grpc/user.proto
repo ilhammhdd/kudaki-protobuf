@@ -4,7 +4,7 @@ package rpc;
 import "events/status.proto";
 import "aggregates/user/user.proto";
 
-message UserAuthenticationRequested {
+message AuthenticateUser {
   string uid = 1;
   string jwt = 2;
 }
@@ -15,7 +15,7 @@ message UserAuthenticated {
   aggregates.user.User user = 3;
 }
 
-message UserAuthorizationRequested {
+message AuthorizeUser {
   string uid = 1;
   aggregates.user.UserRole user_role = 2;
   string jwt = 3;
@@ -28,8 +28,8 @@ message UserAuthorized {
 }
 
 service User {
-  rpc UserAuthentication(UserAuthenticationRequested)
+  rpc UserAuthentication(AuthenticateUser)
       returns (UserAuthenticated);
-  rpc UserAuthorization(UserAuthorizationRequested)
+  rpc UserAuthorization(AuthorizeUser)
       returns (UserAuthorized);
 }

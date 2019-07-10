@@ -43,4 +43,5 @@ message Item {
     ItemDimension item_dimension = 12;
     string color = 13;
     google.protobuf.Timestamp created_at = 14;
+    double total_raw_rating = 15;
 }

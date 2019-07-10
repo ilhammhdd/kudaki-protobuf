@@ -22,4 +22,6 @@ message Order {
     int32 shipment_fee = 7;
     bool delivered = 8;
     google.protobuf.Timestamp created_at = 9;
+    string owner_uuid = 10;
+    string tenant_uuid = 11;
 }

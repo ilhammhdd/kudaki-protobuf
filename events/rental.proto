@@ -1,7 +1,6 @@
 syntax = "proto3";
 package event;
 
-import "aggregates/rental/cart.proto";
 import "events/status.proto";
 import "aggregates/rental/cart_item.proto";
 import "aggregates/user/user.proto";
@@ -21,10 +20,11 @@ enum RentalServiceCommandTopic{
 
 message AddCartItem {
     string uid = 1;
-    string cart_uuid = 2;
     string item_uuid = 3;
     int32 item_amount = 4;
     string kudaki_token = 5;
+    int64 duration_from = 6;
+    int32 duration = 7;
 }
 
 message RetrieveCartItems {
@@ -78,13 +78,14 @@ message CartItemAdded {
     aggregates.rental.CartItem cart_item = 2;
     event.Status event_status = 4;
     AddCartItem add_cart_item = 5;
+    aggregates.user.User requester = 6;
 }
 
 message CartItemsRetrieved {
     string uid = 1;
     aggregates.user.User requester = 2;
     event.Status event_status = 3;
-    aggregates.rental.Cart cart = 4;
+    // aggregates.rental.Cart cart = 4;
     RetrieveCartItems retrieve_cart_items = 6;
     bytes result = 7;
 }

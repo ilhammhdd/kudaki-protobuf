@@ -10,6 +10,5 @@ message Profile {
     aggregates.user.User user = 3;
     string full_name = 4;
     string photo = 5;
-    double reputation = 6;
     google.protobuf.Timestamp created_at = 7;
 }

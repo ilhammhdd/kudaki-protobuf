@@ -150,12 +150,14 @@ message UpdateAddress {
   string zip_code = 6;
   float latitude = 7;
   float longitude = 8;
+  string address_uuid = 9;
 }
 
 message UpdateProfile {
   string uid = 1;
   string photo = 2;
   string full_name = 3;
+  string kudaki_token = 4;
 }
 
 message RetrieveAddresses {
@@ -178,7 +180,6 @@ message AddressAdded {
   string uid = 1;
   aggregates.user.User user = 2;
   event.Status event_status = 3;
-  aggregates.user.User user_uuid = 4;
   aggregates.user.Address users_address = 5;
 }
 
@@ -205,4 +206,5 @@ message AddressesRetrieved {
   aggregates.user.User user = 2;
   event.Status event_status = 3;
   bytes result = 4;
+  repeated aggregates.user.Address addresses = 5;
 }

@@ -10,6 +10,5 @@ message Cart {
     int32 total_price = 4;
     int32 total_items = 5;
     bool open = 6;
-    bool delivered = 7;
     google.protobuf.Timestamp created_at = 8;
 }

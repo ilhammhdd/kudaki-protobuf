@@ -8,14 +8,11 @@ message Address {
     int64 id = 1;
     string uuid = 2;
     aggregates.user.Profile profile = 3;
-    string name = 4;
+    string full_address = 4;
     string receiver_name = 5;
     string receiver_phone_number = 6;
     string zip_code = 7;
-    string sub_district = 8;
-    string city = 9;
-    string province = 10;
-    double latitude = 11;
-    double longitude = 12;
+    float latitude = 11;
+    float longitude = 12;
     google.protobuf.Timestamp created_at = 13;
 }
