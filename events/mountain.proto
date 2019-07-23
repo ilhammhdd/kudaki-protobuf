@@ -179,9 +179,10 @@ message RetrieveMountains {
   string kudaki_token = 2;
   int32 offset = 3;
   int32 limit = 4; 
+  bytes result_schema = 5;
 }
 
-message SearchMountain {
+message SearchMountains {
   string uid = 1;
   string kudaki_token = 2;
   string keyword = 3;
@@ -230,13 +231,13 @@ message MountainsRetrieved {
   aggregates.user.User requester = 2;
   event.Status event_status = 3; 
   RetrieveMountains retrieve_mountains = 4;
-  repeated aggregates.mountain.Mountain mountains = 5;
+  bytes result = 5;
 }
 
 message MountainSearched {
   string uid = 1;
   aggregates.user.User requester = 2;
   event.Status event_status = 3; 
-  SearchMountain search_mountain = 4;
+  SearchMountains search_mountain = 4;
   repeated aggregates.mountain.Mountain mountains = 6;
 }

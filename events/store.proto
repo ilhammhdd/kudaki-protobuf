@@ -75,7 +75,7 @@ message RetrieveStorefrontItems {
 enum StorefrontServiceEventTopic {
   STOREFRONT_ITEM_ADDED = 0;
   STOREFRONT_ITEM_DELETED = 1;
-  STOREFRONT_ITEM_UPDATED = 2;
+  STOREFRONT_ITEMS_UPDATED = 2;
   STOREFRONT_ITEMS_RETRIEVED= 3;
 }
 
@@ -96,10 +96,10 @@ message StorefrontItemDeleted {
   DeleteStorefrontItem delete_storefront_item = 5;
 }
 
-message StorefrontItemUpdated {
+message StorefrontItemsUpdated {
   string uid = 1;
-  aggregates.store.Item item_before = 2;
-  aggregates.store.Item item_after = 3;
+  repeated aggregates.store.Item items_before = 2;
+  repeated aggregates.store.Item items_after = 3;
   event.Status event_status = 4;
   aggregates.user.User requester = 5;
   UpdateStorefrontItem update_storefront_item = 6;
@@ -168,18 +168,9 @@ message ItemsSearched {
   item review service commands
 */
 enum ItemReviewServiceCommandTopic {
-  REVIEW_ITEM = 0;
-  RETRIEVE_ITEM_REVIEWS = 1;
+  RETRIEVE_ITEM_REVIEWS = 0;
   COMMENT_ITEM_REVIEW = 2;
   RETRIEVE_ITEM_REVIEW_COMMENTS = 3;
-}
-
-message ReviewItem {
-  string uid = 1;
-  string kudaki_token = 2;
-  float rating = 3;
-  string item_uuid = 4;
-  string review = 5;
 }
 
 message RetrieveItemReviews {
@@ -209,18 +200,17 @@ message RetrieveItemReviewComments {
   item review service events
 */
 enum ItemReviewServiceEventTopic {
-  ITEM_REVIEWED = 0;
+  ITEMS_REVIEWED = 0;
   ITEM_REVIEWS_RETRIEVED = 1;
   ITEM_REVIEW_COMMENTED = 2;
   ITEM_REVIEW_COMMENTS_RETRIEVED = 3;
 }
 
-message ItemReviewed {
+message ItemsReviewed {
   string uid = 1;
   aggregates.user.User requester = 2;
   event.Status event_status = 3;
-  aggregates.store.ItemReview item_review = 4;
-  ReviewItem review_item = 5;
+  repeated aggregates.store.ItemReview item_reviews = 4;
 }
 
 message ItemReviewsRetrieved {

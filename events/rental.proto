@@ -4,7 +4,6 @@ package event;
 import "events/status.proto";
 import "aggregates/rental/cart_item.proto";
 import "aggregates/user/user.proto";
-import "aggregates/rental/returnment_confirmation.proto";
 
 /* 
   rental service command
@@ -14,8 +13,6 @@ enum RentalServiceCommandTopic{
     RETRIEVE_CART_ITEMS = 1;
     DELETE_CART_ITEM = 2;
     UPDATE_CART_ITEM = 3;
-    TENANT_CONFIRM_RETURNMENT = 4;
-    OWNER_CONFIRM_RETURNMENT = 5;
   }
 
 message AddCartItem {
@@ -49,18 +46,6 @@ message UpdateCartItem {
     string cart_item_uuid = 4;
 }
 
-message TenantConfirmReturnment {
-    string uid = 1;
-    string kudaki_token = 2; // tenant user uuid derived from here
-    string order_uuid = 3;
-}
-
-message OwnerConfirmReturnment {
-    string uid = 1;
-    string kudaki_token = 2; // owner user uuid derived from here
-    string order_uuid = 3;
-}
-
 /* 
   rental service events
 */
@@ -68,9 +53,7 @@ enum RentalServiceEventTopic{
     CART_ITEM_ADDED = 0;
     CART_ITEMS_RETRIEVED = 1;
     CART_ITEM_DELETED = 2;
-    CART_ITEM_UPDATED =  3;
-    TENANT_CONFIRMED_RETURNMENT = 4;
-    OWNER_CONFIRMED_RETURNMENT = 5;
+    CART_ITEMS_UPDATED =  3;
   }
 
 message CartItemAdded {
@@ -98,27 +81,11 @@ message CartItemDeleted {
     aggregates.rental.CartItem cart_item = 5;
 }
 
-message CartItemUpdated {
+message CartItemsUpdated {
     string uid = 1;
     aggregates.user.User user = 2;
-    aggregates.rental.CartItem initial_cart_item = 3;
+    repeated aggregates.rental.CartItem initial_cart_item = 3;
     UpdateCartItem update_cart_item = 4;
     event.Status event_status = 5;
-    aggregates.rental.CartItem updated_cart_item = 6;
-}
-
-message TenantConfirmedReturnment {
-    string uid = 1;
-    aggregates.user.User tenant = 2;
-    event.Status event_status = 3;
-    aggregates.rental.ReturnmentConfirmation returnment_confirmation = 4;
-    TenantConfirmReturnment tenant_confirm_returnment = 5;
-}
-
-message OwnerConfirmedReturnment {
-    string uid = 1;
-    aggregates.user.User owner = 2;
-    event.Status event_status = 3;
-    aggregates.rental.ReturnmentConfirmation returnment_confirmation = 4;
-    OwnerConfirmReturnment owner_confirm_returnment = 5;
+    repeated aggregates.rental.CartItem updated_cart_item = 6;
 }

@@ -17,7 +17,7 @@ message UserAuthenticated {
 
 message AuthorizeUser {
   string uid = 1;
-  aggregates.user.UserRole user_role = 2;
+  repeated aggregates.user.UserRole user_roles = 2;
   string jwt = 3;
 }
 

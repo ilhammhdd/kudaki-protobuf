@@ -10,4 +10,5 @@ message Storefront {
     int32 total_item = 4;
     double rating = 5;
     google.protobuf.Timestamp created_at = 6;
+    double total_raw_rating = 7;
 }

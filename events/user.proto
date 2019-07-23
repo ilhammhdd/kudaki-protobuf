@@ -128,6 +128,7 @@ enum UserInfoServiceCommandTopic {
   UPDATE_ADDRESS = 1;
   UPDATE_PROFILE = 2;
   RETRIEVE_ADDRESSES = 3;
+  RETRIEVE_PROFILE = 4;
 }
 
 message AddAddress {
@@ -158,9 +159,16 @@ message UpdateProfile {
   string photo = 2;
   string full_name = 3;
   string kudaki_token = 4;
+  string phone_number = 5;
 }
 
 message RetrieveAddresses {
+  string uid = 1;
+  string kudaki_token = 2;
+  bytes result_schema = 3;
+}
+
+message RetrieveProfile {
   string uid = 1;
   string kudaki_token = 2;
   bytes result_schema = 3;
@@ -174,6 +182,7 @@ enum UserInfoServiceEventTopic {
   ADDRESS_UPDATED = 1;
   PROFILE_UPDATED = 2;
   ADDRESSES_RETRIEVED = 3;
+  PROFILE_RETRIEVED = 4;
 }
 
 message AddressAdded {
@@ -207,4 +216,12 @@ message AddressesRetrieved {
   event.Status event_status = 3;
   bytes result = 4;
   repeated aggregates.user.Address addresses = 5;
+}
+
+message ProfileRetrieved {
+  string uid = 1;
+  aggregates.user.User requester = 2;
+  event.Status event_status = 3;
+  bytes result = 4;
+  aggregates.user.Profile profile = 5;
 }
